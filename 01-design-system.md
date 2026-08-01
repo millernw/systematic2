@@ -3,17 +3,22 @@
 This is a specification, not a suggestion. Every color and type decision on the site
 derives from this file.
 
-## Color
+## Color, non-negotiable
 
-Five tokens. There is no sixth.
+The brand color is EMERALD. There is no blue in this project.
 
-```css
---ink:    #101413;  /* primary text, dark section surfaces */
---paper:  #F4F5F2;  /* page background. Cool grey-green, NOT cream */
---steel:  #6E7772;  /* secondary text, hairlines, de-emphasized lines */
---signal: #1F4FE0;  /* the single accent: links, primary button, active states */
---live:   #E8A33D;  /* lit states inside the SixStack visual ONLY */
-```
+  --cream #F7F5EF   --cream-panel #EFEAE0   --paper #FFFFFF
+  --ink #0A1512     --ink-panel #10241E     --muted #5C6B65
+  --emerald-lite #34D399   --emerald #059669   --emerald-fill #04735A
+  --emerald-deep #04463A   --emerald-tint #E6F5EE
+  --honey #E0A33C (accent only, never on a button or a link)
+  --slate #2E4A57 (diagram strokes only)
+
+Buttons and any fill carrying white text use --emerald-fill, because --emerald fails
+contrast with white small text.
+
+Never write a hex value or a Tailwind color-name utility in a component. Use the tokens.
+If you catch yourself typing blue, indigo, sky, cyan, violet, or purple, stop.
 
 Rules:
 - `--live` appears nowhere except the six-layer visual. Not on buttons, not on badges.
