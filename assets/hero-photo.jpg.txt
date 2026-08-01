@@ -1,0 +1,34 @@
+PLACEHOLDER — Replace with your real hero image.
+
+INSTRUCTIONS:
+─────────────────────────────────────────────────────────────────────────────
+1. Delete this file and add your real hero-photo.jpg (or .webp / .png) here.
+
+2. Compress it before uploading:
+   → https://tinypng.com  (drag and drop, free)
+   → Target file size: under 400kb for a hero image
+
+3. Recommended dimensions:
+   → 1920 × 1080px minimum for full-width heroes
+   → 1200 × 800px for split-layout heroes (image on one side)
+   → 800 × 800px for product mockups or square formats
+
+4. Once uploaded to GitHub, get the raw URL:
+   → Go to the file in GitHub → click "Raw" → copy the URL
+   → It will look like:
+      https://raw.githubusercontent.com/YOUR-USERNAME/YOUR-REPO/main/assets/hero-photo.jpg
+
+5. Reference it in your AI prompt like this:
+   "Hero background image: https://raw.githubusercontent.com/you/repo/main/assets/hero-photo.jpg"
+
+NEVER upload the raw photo directly into an AI chat prompt.
+Always use the GitHub raw URL instead — keeps your prompts lean.
+
+PHOTOGRAPHY DIRECTION NOTES:
+(Fill this in so any AI or collaborator knows what style to use as placeholder)
+─────────────────────────────────────────────────────────────────────────────
+Style:        [e.g. Clean product screenshot / Abstract macro / Real people / No photography]
+Mood:         [e.g. Bright and airy / Dark and dramatic / Warm and earthy]
+Subject:      [e.g. App UI mockup / Person using product / Abstract texture / Illustration]
+Color range:  [e.g. Neutral tones that won't clash with #E8FF47 accent]
+Avoid:        [e.g. Stock photo people smiling at laptops / Busy backgrounds]
