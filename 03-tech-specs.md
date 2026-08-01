@@ -1,100 +1,81 @@
 # 03 — Technical Specs
 
 > Use this file when scaffolding the project, setting up integrations, or making architecture decisions.
-> Paste this alongside 00-master-prompt.md at the start of any technical build session.
 
 ---
 
-## Framework & Output
+## Build Target & Output Format
 
-- **Framework:** [HTML/CSS/JS (vanilla) / React / Next.js / Astro / Vue / Svelte / No preference]
-- **Output format:** [Single HTML file / Multi-file component structure / Full project scaffold]
-- **CSS approach:** [Embedded `<style>` / CSS file / Tailwind / CSS Modules / Styled Components]
-- **JavaScript approach:** [Vanilla JS / TypeScript / JSX / No preference]
-- **Package manager:** [npm / yarn / pnpm / None (no build step)]
+**Primary build platform: HighLevel (GoHighLevel) AI Studio.**
 
----
+This is **not** a React/Next/Astro codebase. It is built inside HighLevel's AI Studio site/funnel builder. The output is a set of HighLevel pages rendered from **one shared, reusable component library**.
 
-## Hosting & Deployment
+- **Architecture principle:** ONE shared product library rendered through MULTIPLE industry landing pages. Same products, same visual system, same page structure. Only headline copy, example proof, and industry name change per industry page. Build swappable industry skins over one shared library — never three separate sites.
+- **Build order (matters):**
+  1. **Design system + component library** (colors, type, and the 7 reusable components below).
+  2. Root homepage (`/`).
+  3. Industry landing page template → first live instance: **Functional Medicine**.
+  4. Product/component detail page template → generate for all 11 products.
+  5. `/signal`.
+  6. `/pricing`.
+- Each later page **references existing components by name** — it does not rebuild them.
 
-- **Hosting target:** [Vercel / Netlify / GitHub Pages / Cloudflare Pages / AWS / Other: specify]
-- **Custom domain:** [Yes — [yourdomain.com] / No / Not yet]
-- **Environment:** [Static only / Serverless functions needed / Full backend needed]
-
----
-
-## Integrations
-
-> *For each integration, specify what it does and any relevant account/config details.*
-
-| Integration | Purpose | Notes |
-|-------------|---------|-------|
-| [e.g. Stripe] | [Payments] | [Test mode / Live mode / Which products] |
-| [e.g. Mailchimp] | [Email list] | [Which audience ID] |
-| [e.g. Supabase] | [Database / Auth] | [Project URL needed] |
-| [e.g. Google Analytics] | [Analytics] | [Measurement ID: G-XXXXXXX] |
-| [e.g. Calendly] | [Booking] | [Embed or link] |
-| [e.g. Formspree] | [Form handling] | [Form ID: xxxxxxx] |
-
-*Add rows as needed. Remove rows that don't apply.*
+### Reusable component library (build once)
+1. **Product Card** — name, one-sentence value prop, price, small icon, CTA button.
+2. **Outcome Section Header** — category label + short subhead, groups products by outcome.
+3. **Pricing Tier Card** — Signal tiers (name, employee range, monthly price, "everything included" note, CTA).
+4. **Proof Stat Card** — big number + short label + business name (owner.com style).
+5. **Testimonial Card** — quote, name, business, avatar.
+6. **Industry Selector** — buttons/cards for Restaurants, Food Trucks, Functional Medicine, Other Small Business.
+7. **Audit CTA Block** — the prominent hero conversion action driving to `/audit`.
 
 ---
 
-## Forms & Data Collection
+## Hosting & Domain
 
-| Form | Fields | Where Data Goes | Notes |
-|------|--------|----------------|-------|
-| [e.g. Contact form] | [Name, Email, Message] | [Formspree / email] | [Any validation rules] |
-| [e.g. Newsletter] | [Email only] | [Mailchimp] | [Double opt-in?] |
-| [e.g. Waitlist] | [Name, Email] | [Supabase table] | [Confirmation email?] |
+- **Hosting:** HighLevel native (Sites/Funnels). No separate host, no Vercel/Netlify.
+- **Domain:** goSystematic.com, connected inside HighLevel.
+- **Analytics:** HighLevel's built-in reporting plus Google Analytics/GA4 tag if desired. Track audit starts and completions as the primary conversion event.
 
 ---
 
-## Authentication
+## Integrations (all native to HighLevel where possible)
 
-- **Auth needed:** [Yes / No]
-- **If yes — auth method:** [Email + password / Magic link / Google OAuth / GitHub OAuth / Multiple]
-- **Auth provider:** [Supabase / Firebase / Auth0 / NextAuth / Clerk / Custom]
-- **Protected pages/routes:** [List which pages require login]
-- **User roles:** [Single role / Admin + User / Custom: describe]
-
----
-
-## CMS & Content Management
-
-- **CMS needed:** [Yes / No]
-- **Who updates content:** [Developer only / Non-technical editor / Both]
-- **CMS preference:** [Sanity / Contentful / Notion / Prismic / Strapi / Markdown files / None]
-- **Content types managed via CMS:** [Blog posts / Team members / Products / Testimonials / All / None]
-- **Localization / multi-language:** [Yes — languages: [list] / No]
+| Purpose | Tool | Notes |
+|---|---|---|
+| CRM / contacts & pipeline | HighLevel CRM | Core of Signal; audit leads land here in a pipeline |
+| Free 6-Point Marketing Audit | HighLevel Form/Survey | The site's primary conversion tool; feeds a dedicated pipeline stage. Do NOT bury it under "Contact us." |
+| Setup quote / booking calls | HighLevel Calendars | For "Get your setup quote" and Signal+ "book a call" CTAs |
+| Payments / recurring billing | HighLevel Payments (Stripe) | Components ($97/mo etc.), Signal tiers, one-time Reactivation ($1,800) |
+| Missed Call Text-Back | HighLevel native automation | Sold as a component; also demonstrable on the site's own number |
+| WebChat / AI Chatbot | HighLevel Conversation AI / WebChat widget | Component + optional site-wide widget |
+| Review automation | HighLevel Reputation | Sold as Google Review Automation component |
+| Listings sync | Yext (via HighLevel Listings) | Yext / Listings Management component ($50/mo) |
+| SMS + Email campaigns | HighLevel native | Birthday, Anniversary, Reactivation, SMS list building |
+| Website + hosting | HighLevel Sites | The "Free Website + Super Hosting" component |
+| Memberships / courses / community | HighLevel Memberships & Communities | Included in Signal (client dashboard, courses, community) |
 
 ---
 
-## Performance & SEO
+## Authentication & CMS
 
-- **SEO priority:** [Critical (content/blog site) / Important (marketing site) / Low (internal tool)]
-- **Core Web Vitals target:** [LCP < 2.5s / FID < 100ms / CLS < 0.1 — or "best effort"]
-- **Lighthouse score goal:** [90+ / 80+ / Not a priority]
-- **Image optimization:** [Yes — use next/image or similar / Manual / Not needed]
-- **Sitemap needed:** [Yes / No]
-- **Robots.txt needed:** [Yes / No]
-- **Structured data / schema markup:** [Yes — type: [Article/Product/FAQ/etc] / No]
+- **Auth / client dashboard:** HighLevel Memberships provides the client dashboard access included in every Signal tier. No custom auth build.
+- **CMS:** Content is managed natively in HighLevel. Product/pricing data lives in the shared component library so a price change propagates everywhere it's referenced.
 
 ---
 
-## Browser & Device Support
-
-- **Minimum browser support:** [Last 2 versions / Modern only (Chrome/Firefox/Safari/Edge)]
-- **Accessibility target:** [WCAG AA / WCAG AAA / Best effort / Not specified]
-
-> *Responsive breakpoints and layout behavior: see **04-structure.md**.*
+## Conversion & Routing Rules
+- `/audit` is the **primary CTA site-wide**. Every page's hero uses the Audit CTA Block.
+- **Signal+** add-on services appear ONLY on `/signal` and `/pricing`. Never in the catalog or an industry lead flow.
+- Product cards link to their detail page; detail pages CTA to "Get started" (checkout/subscribe) with a secondary link back to `/audit`.
 
 ---
 
-## Known Constraints
+## Known Constraints & Compliance
 
-> *Anything the AI must know that doesn't fit above.*
-
-- [e.g. "Must work without JavaScript for core content (progressive enhancement)"]
-- [e.g. "No external API calls on the client — proxy through serverless functions"]
-- [e.g. "No paid npm packages — open source only"]
+- **Build within AI Studio's capabilities** — favor its native components and the shared library over custom code. Keep everything reusable and duplicatable so industry pages can be cloned and re-skinned quickly.
+- **Every product must show a name, a price, and a plain "what you get."** No agency-style long copy or vague service language. If output drifts, redirect.
+- **Light theme only** (see 02) — do not inherit the dark goSystematic.com theme.
+- **Pricing display:** public Calibration setup range is **$3,500–$9,000**. Do not surface internal workbook figures (sample quote $6,650; internal flag band $5,000–$15,000).
+- **Functional medicine / patient data:** the Reactivation Campaign works with patient lists and coexists with the practice's EHR (does not replace records). Keep marketing claims careful; avoid implying medical-record handling or storage. Confirm the practice's own consent/opt-in posture for patient SMS/email before launching campaigns.
+- **Deadline:** ASAP — prioritize getting the shared component library + root homepage + Functional Medicine industry page live first; other industry skins and detail pages can follow immediately after.
