@@ -22,7 +22,7 @@ every response.
 context panel so they persist across prompts. Lovable re-reads that on every message,
 which is exactly what you want.
 
-**If you are using v0 or Bolt:** paste `00-START-HERE.md` and `01-design-system.md` with
+**If you are using v0 or Bolt:** paste `docs/00-START-HERE.md` and `docs/01-design-system.md` with
 Prompt 1, then paste the relevant reference doc at the top of each later prompt. Keep the
 seven rules on hand to re-paste when things drift.
 
@@ -31,23 +31,33 @@ seven rules on hand to re-paste when things drift.
 ## Prompt 1, Foundation
 
 ```
-Read 00-START-HERE.md, 01-design-system.md, 02-architecture.md, and 04-data-files.md
-before writing anything.
+Read docs/00-START-HERE.md, docs/01-design-system.md, docs/02-architecture.md, and
+docs/04-data-files.md before writing anything.
 
 Build the foundation only:
 1. Design tokens, Plus Jakarta Sans loaded at 400 and 800, the type scale, and the Pill
    component with its three variants
 2. The shared Section component that owns vertical padding and the scroll-reveal entry
-3. src/config/brand.ts and every file in src/content/, contents exactly as specified
-4. Header and Footer
-5. The hero, copy verbatim from 03-content.md, with the photograph and the credential strip
-6. SixStack stubbed. It has one variant, `detail`, built later in prompt 4
-7. Empty labeled placeholders for the remaining homepage sections in the order given in
-   00-START-HERE.md
-8. The /industries/[slug] route, functional, returning 404 for all five unpublished seeds
+3. src/config/brand.ts and every file in src/content/, contents exactly as specified.
+   This replaces the diagnostic six with the six systems, the eleven components with four,
+   and the three seat tiers with the seat rule. Delete the files that no longer have a
+   home rather than leaving them orphaned.
+4. Header and Footer. Header nav items Signal, The Six and Pricing are anchor links to
+   /#signal, /#the-six and /#pricing, not routes. The footer loses its "Calibration
+   pricing" and "Signal" page links.
+5. Delete the /signal and /pricing pages and 301 them to /#signal and /#pricing. 301
+   /calibration to /build. Add the three anchor ids when you stub the sections below so
+   the redirects have somewhere to land.
+6. The hero, copy verbatim from docs/03-content.md, with the photograph and the credential
+   strip
+7. SixStack stubbed. It has one variant, `detail`, built later in prompt 5
+8. Empty labeled placeholders for the remaining homepage sections in the order given in
+   docs/00-START-HERE.md. There are ten. One of them, Signal, does not exist in the
+   codebase yet and is new.
+9. The /industries/[slug] route, functional, returning 404 for all five unpublished seeds
 
-Before you write code, state your hero layout plan in two sentences and confirm the five
-color tokens and three typefaces you are using. Then build.
+Before you write code, state your hero layout plan in two sentences and confirm the color
+tokens and the typeface you are using. Then build.
 ```
 
 ---
@@ -55,7 +65,7 @@ color tokens and three typefaces you are using. Then build.
 ## Prompt 2, You are the marketing, with the Math inside it
 
 ```
-Read the "You are the marketing" section of 03-content.md.
+Read the "You are the marketing" section of docs/03-content.md.
 
 Build one section, not two. The Math calculator lives inside this section beneath the
 second paragraph, with a subheading only: no second eyebrow, no second section wrapper, no
@@ -66,7 +76,7 @@ Order inside the section: eyebrow pill, headline, two body paragraphs, the "Here
 that costs" subheading, the calculator, the closing line beneath the module, then the
 --steel closing line about the gap.
 
-Read the Rule 2 note in 03-content.md before you touch the calculator. Do not add any
+Read the Rule 2 note in docs/03-content.md before you touch the calculator. Do not add any
 projection of what Signal would recover, and do not change the default inputs.
 ```
 
@@ -75,8 +85,8 @@ projection of what Signal would recover, and do not change the default inputs.
 ## Prompt 3, Two options
 
 ```
-Read the "Two options" section of 03-content.md and the layout rules in
-01-design-system.md.
+Read the "Two options" section of docs/03-content.md and the layout rules in
+docs/01-design-system.md.
 
 Build it as three cards: two dead-end cards on --paper, then the third-option card on
 emerald tint. Each carries two pills at the top, a sentence-case heading, body, and a
@@ -89,10 +99,10 @@ Pills are sentence case, never uppercase, never mono.
 
 ## Prompt 4, Signal, with the before/after inside it
 
-Signal is built before The Six. That order is deliberate and it is in 00-START-HERE.md.
+Signal is built before The Six. That order is deliberate and it is in docs/00-START-HERE.md.
 
 ```
-Read the "Signal" section of 03-content.md.
+Read the "Signal" section of docs/03-content.md.
 
 Build one section. Eyebrow pill, headline, body, then four cards two by two, verbatim.
 There are four, not three: Built for you, Run for you, Improved over time, Sits alongside.
@@ -112,8 +122,8 @@ module takes its place.
 ## Prompt 5, The Six
 
 ```
-Read the "The Six" section of 03-content.md, the six.ts data in 04-data-files.md, and the
-signature element spec in 01-design-system.md.
+Read the "The Six" section of docs/03-content.md, the six.ts data in docs/04-data-files.md, and the
+signature element spec in docs/01-design-system.md.
 
 Do not build this from scratch. The interactive stack already exists on the live site as
 "The 6 Marketing Pillars". Keep the component and the interaction, repoint it at the new
@@ -139,9 +149,9 @@ written.
 ## Prompt 6, Pricing
 
 ```
-Read the "Pricing" section of 03-content.md, the pricing structure in 02-architecture.md,
+Read the "Pricing" section of docs/03-content.md, the pricing structure in docs/02-architecture.md,
 and brand.ts, included.ts, buildRows.ts, components.ts, and noSurprises.ts in
-04-data-files.md.
+docs/04-data-files.md.
 
 Four stacked blocks on --cream using the card idiom, in this order: Signal monthly, the
 build, Components, No surprises. Do not lead with the build fee.
@@ -177,7 +187,7 @@ How it works is built after Pricing now. The reader knows what it is and what it
 the only question left is how to start.
 
 ```
-Read the "How it works" section of 03-content.md and steps.ts in 04-data-files.md.
+Read the "How it works" section of docs/03-content.md and steps.ts in docs/04-data-files.md.
 
 Three steps, horizontal with hairline dividers on desktop, stacked on mobile. Each step
 gets its actor pill from steps.ts: "You" in amber tint on step one, "We do this" in emerald
@@ -195,8 +205,8 @@ beneath them. Signal+ gets no link and no button. Do not add a fourth step.
 Run as one prompt, or split if quality drops.
 
 ```
-Read the Proof, Industries, FAQ, and Final CTA sections of 03-content.md and faqs.ts in
-04-data-files.md.
+Read the Proof, Industries, FAQ, and Final CTA sections of docs/03-content.md and faqs.ts in
+docs/04-data-files.md.
 
 Proof: four real testimonial cards from testimonials.ts on --cream-panel, with initials
 avatars. The quotes are real and attributed. Do not edit them, do not invent a fifth, and
@@ -219,7 +229,7 @@ line beneath, no form. Build it as a reusable Cta component, it appears on four 
 ## Prompt 9, /build
 
 ```
-Read the /build section of 03-content.md, plus six.ts and addOns.ts in 04-data-files.md.
+Read the /build section of docs/03-content.md, plus six.ts and addOns.ts in docs/04-data-files.md.
 
 Build the page at /build, and add a 301 redirect from /calibration to it. Reuse Section,
 Cta, and every token.
@@ -240,7 +250,7 @@ data files and must not be invented.
 ## Prompt 10, /components and /signal-plus
 
 ```
-Read the /components and /signal-plus sections of 03-content.md, plus components.ts and
+Read the /components and /signal-plus sections of docs/03-content.md, plus components.ts and
 signalPlus.ts.
 
 Build both pages from existing components. Neither goes in the header nav. /components is
@@ -263,11 +273,11 @@ Keep these loaded. Regression after edit ten is the normal failure mode, not a s
 something went badly wrong.
 
 **Generic drift**
-> Re-read 01-design-system.md and list every anti-pattern currently present in the code.
+> Re-read docs/01-design-system.md and list every anti-pattern currently present in the code.
 > Fix them. Do not change anything else.
 
 **Copy invented or improved**
-> You wrote or altered copy. Every word on this site comes from 03-content.md verbatim.
+> You wrote or altered copy. Every word on this site comes from docs/03-content.md verbatim.
 > Diff what is rendered against that file and restore it. List what you changed back.
 
 **Results claim appeared**
@@ -280,7 +290,7 @@ something went badly wrong.
 > and "from $". Remove every instance. Every price on this site is published.
 
 **Old design system returned**
-> You are rebuilding the pre-2026-08-17 site. Re-read 01-design-system.md and fix every
+> You are rebuilding the pre-2026-08-17 site. Re-read docs/01-design-system.md and fix every
 > instance: IBM Plex instead of Plus Jakarta Sans, uppercase or mono eyebrows instead of
 > pills, 4px radius instead of 12/24/9999, emerald buttons instead of amber, flat --ink
 > sections instead of the brand gradient, hairline lists instead of cards, or photography
@@ -360,7 +370,7 @@ something went badly wrong.
 - [ ] No uppercase text anywhere, including eyebrows and labels. Eyebrows are pills.
 - [ ] Every primary button is `--amber` with `--ink` text. No white text on amber.
 - [ ] Dark sections are the brand gradient. Flat `--ink` is never a background.
-- [ ] The homepage renders exactly ten sections, in the order given in 00-START-HERE.md
+- [ ] The homepage renders exactly ten sections, in the order given in docs/00-START-HERE.md
 - [ ] The Math, before/after, testimonials, and guarantee copy all still exist, each in its
       new home, unchanged apart from product names and prices
 - [ ] Nothing sits between The Six and Pricing
