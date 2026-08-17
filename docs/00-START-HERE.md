@@ -1,0 +1,166 @@
+# Systematic Website Build: Start Here
+
+You are building the new marketing site for Systematic. This file is the entry point.
+Read it fully, then read the file the current task points to.
+
+## The documents
+
+| File | What it governs | When to read it |
+|---|---|---|
+| `00-START-HERE.md` | Rules, build order, project facts | Every session, every time |
+| `01-design-system.md` | Tokens, type, layout, motion, what not to do | Before any visual work |
+| `02-architecture.md` | Stack, file structure, config, routing, components | Before any structural work |
+| `03-content.md` | Every word on the site | Before writing any copy |
+| `04-data-files.md` | Literal contents of the typed data files | When creating or editing data |
+| `../prompts/05-build-prompts.md` | The prompt sequence and correction prompts | Human uses this, not you |
+
+## What this company is
+
+Systematic sells systems as a service to small businesses. There is one product: Signal,
+a marketing operating system built around one business, which the owner logs into to run
+everything. It is a subscription to access, not a project the customer buys and keeps.
+Systematic is not an agency and never bills hourly.
+
+Signal has two prices, the way serious software always has: a one-time build and a monthly
+subscription. Both are published. The build is called "the build." It is not a separate
+product, it does not have a brand name, and the word Calibration does not appear anywhere
+on this site.
+
+Signal is made of six named systems. Four of those six are also sold on their own for $97
+a month as Components, which is the way in for a business that is not ready for the whole
+thing. Same names, two depths. That is deliberate and it is why the ladder needs no
+explaining.
+
+**The homepage carries the entire offer.** A reader must be able to understand what Signal
+is, what it includes, and both prices without leaving the page. Subpages exist only for the
+reader who wants more detail than the homepage gives. If you find yourself moving something
+essential off the homepage to keep it short, you have reintroduced the exact problem this
+rewrite exists to fix.
+
+The market argument: small businesses have two options today, buying software they never
+learn to use, or hiring an agency they cannot afford where the affordable ones do not
+deliver. Systematic fills the middle. Never explain this as a category, a spectrum, or a
+business model. Express it only as the two things the reader has already tried.
+
+The audience: owners who are not marketers and who answer their own phone. They do not
+say funnel, stack, omnichannel, or operating system.
+
+The one job of the homepage: get a skeptical owner to book the audit.
+
+## The seven rules
+
+These override anything else, including your own judgment about what would look good.
+
+1. **Copy comes from `03-content.md` verbatim.** You do not write marketing copy. You do
+   not improve supplied copy. If a section needs words that are not in that file, stop
+   and ask.
+
+2. **No claims about results.** No lead counts, cost per lead, revenue figures, growth
+   percentages, or ROI, anywhere, including placeholders. Describe what the system does,
+   never what it will produce for a customer.
+
+3. **Every price is published.** The strings "starting at", "contact us", "custom quote",
+   "get a quote", "request a demo", and "from $" appear nowhere on this site.
+
+4. **No product name or price is hardcoded in a component.** Everything reads from
+   `src/config/brand.ts` or a file in `src/content/`. See `02-architecture.md`.
+
+5. **The visual direction in `01-design-system.md` is not a starting point.** It is the
+   spec, and it was re-derived from the live site's CSS rather than written from memory.
+   Do not substitute typefaces, add a color, or introduce a pattern from the anti-pattern
+   list. In particular: Plus Jakarta Sans not IBM Plex, pills not uppercase mono, amber
+   buttons not emerald, cards not hairline lists.
+
+6. **Do not add sections, features, or pages that were not asked for.** No testimonial
+   carousel, no newsletter signup, no chat bubble, no trust badges, no logo cloud, no
+   cookie banner beyond what is legally required.
+
+7. **When you finish a task, state which of these seven rules the work touched and how
+   you complied.** One line each. This is not optional.
+
+## This is an edit, not a rebuild
+
+There is a live site at gosystematic.com and it is good. Most of it stays. The design
+system in `01-design-system.md` was re-derived from its CSS on 2026-08-17 and is the
+reference for anything visual.
+
+Five things change, and only five:
+
+0. **Three pages are deleted.** `/signal` and `/pricing` become homepage anchors,
+   `/calibration` 301s to `/build`. These three are why a reviewer said the offer was
+   scattered across pages. See the routing section of `02-architecture.md`. Nothing else in
+   this rewrite matters if this one does not happen.
+
+
+1. The diagnostic six (Delivery, Visibility, Responsiveness, Repeat Business, Follow-Up,
+   New Leads) is replaced by the six systems that actually get built. Same interactive
+   stack component, new data.
+2. The "four functional groups of your build" section is deleted. The six systems section
+   now does that job, with prices on it.
+3. A new Signal section is added, explaining that this is one product, positioned right
+   after Two options.
+4. Every price and product name updates: `Calibration` becomes `the build`, the range
+   `$3,000 to $7,000` becomes `$9,240` with a published table, and the seat pricing
+   replaces the old three tiers.
+
+Everything else on the live page stays: the hero, "you are the marketing," the Math
+calculator, the before-and-after, the testimonials, the guarantee, the FAQ. If your diff
+touches those beyond a name or price change, you have gone too far.
+
+## Build order
+
+1. Foundation: tokens, Plus Jakarta Sans, Pill component, shared section component, config,
+   data files, header with anchor nav, footer, the industry route
+2. Hero, including the credential strip
+3. You are the marketing, with the Math calculator inside it
+4. Two options
+5. Signal, with the before/after module inside it
+6. The Six
+7. Pricing, four blocks, guarantee inside block 4
+8. How it works
+9. Proof, Industries, FAQ, Final CTA
+10. `/build`, then `/components` and `/signal-plus`
+
+Homepage section order, top to bottom: **Hero, You are the marketing, Two options, Signal,
+The Six, Pricing, How it works, Proof, Industries, FAQ, Final CTA.** That is ten rendered
+sections, since Industries renders nothing.
+
+Three ordering rules, all load-bearing:
+
+- **Signal comes before The Six.** The reader has to know this is one product before they
+  see it has six parts, or the six read as a menu to shop from.
+- **Pricing comes immediately after The Six**, with nothing between them. The reader has
+  just seen exactly what gets built and the next question is what it costs.
+- **How it works comes after Pricing.** By then the only open question is how to start, and
+  the answer hands straight off to the CTA.
+
+## What was cut, and where it went
+
+Four sections were removed and none of their copy was lost. Each had a second section
+making the same argument. Full reasoning is at the top of `03-content.md`.
+
+| Was its own section | Now lives in |
+|---|---|
+| The Math | Inside "You are the marketing" |
+| Same business. Different week. | Inside "Signal" |
+| Guarantee | Inside Pricing, block 4 |
+| Not ready for Signal | Inside Pricing, block 3 |
+
+Do not restore any of these as a standalone section without removing its replacement. The
+page is being rebuilt to stop saying the same thing in four places.
+
+`<SixStack variant="product" />` and `variant="hero"` are retired. The stack appears once,
+as the interactive `detail` variant in The Six. The hero uses photography, as it does live.
+
+## Still undecided, do not invent an answer
+
+- What happens to a Component website when a customer cancels. Until this is answered,
+  render the placeholder `{{WEBSITE_CANCELLATION_TERMS}}` and do not write around it.
+- How many texts are included, now that pricing is per seat rather than three tiers. The
+  old 2,000 / 5,000 / 10,000 allowances do not map onto seat pricing. Render
+  `{{TEXT_ALLOWANCE_POLICY}}` literally.
+- Whether an annual prepay discount exists under seat pricing. There is no monthly/annual
+  toggle in this build. Do not add one and do not invent annual figures.
+- Whether there is a cap on how many Components one customer can hold. The old "we cap it
+  at two" line is not in the current offer. Do not write it back in.
+- The Proof section has no real client yet. Placeholders only.
