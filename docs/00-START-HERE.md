@@ -31,11 +31,12 @@ a month as Components, which is the way in for a business that is not ready for 
 thing. Same names, two depths. That is deliberate and it is why the ladder needs no
 explaining.
 
-**The homepage carries the entire offer.** A reader must be able to understand what Signal
-is, what it includes, and both prices without leaving the page. Subpages exist only for the
-reader who wants more detail than the homepage gives. If you find yourself moving something
-essential off the homepage to keep it short, you have reintroduced the exact problem this
-rewrite exists to fix.
+**The homepage carries the whole offer, at decision depth.** A reader must be able to learn
+what Signal is, what it includes, and both prices without leaving the page. That is the
+decision. It is not the same as carrying every detail: reference material a buyer reads
+*after* deciding to care, like the twenty-item inclusion list or the add-on catalogue,
+belongs on `/build`. The test is whether a first-time visitor could decide to contact us
+without clicking anything. Not whether every fact is present.
 
 The market argument: small businesses have two options today, buying software they never
 learn to use, or hiring an agency they cannot afford where the affordable ones do not
@@ -45,7 +46,11 @@ business model. Express it only as the two things the reader has already tried.
 The audience: owners who are not marketers and who answer their own phone. They do not
 say funnel, stack, omnichannel, or operating system.
 
-The one job of the homepage: get a skeptical owner to book the audit.
+The one job of the homepage: get a skeptical owner to run the free Scorecard.
+
+Two names, never interchanged. The **Scorecard** is instant and automated, scored from
+public data, and is what every button on the site points at. The **Audit** takes about an
+hour with a person and is step one of the build.
 
 ## Check your work before you report it
 
@@ -93,7 +98,12 @@ There is a live site at gosystematic.com and it is good. Most of it stays. The d
 system in `01-design-system.md` was re-derived from its CSS on 2026-08-17 and is the
 reference for anything visual.
 
-Five things change, and only five:
+**Round two, 2026-08-18.** A fresh-eyes review found the page was written to be understood
+rather than acted on: 2,325 words, three consecutive pain sections before the product was
+named, a pricing section that was 34% of the page, no call to action across roughly 8,000px
+of scroll, and no picture of the product anywhere. The changes below now include that pass.
+
+Things change, and only these:
 
 0. **Three pages are deleted.** `/signal` and `/pricing` become homepage anchors,
    `/calibration` 301s to `/build`. These three are why a reviewer said the offer was
@@ -112,23 +122,32 @@ Five things change, and only five:
    `$3,000 to $7,000` becomes `$9,240` with a published table, and the seat pricing
    replaces the old three tiers.
 
-Everything else on the live page stays: the hero, "you are the marketing," the Math
-calculator, the before-and-after, the testimonials, the guarantee, the FAQ. If your diff
-touches those beyond a name or price change, you have gone too far.
+5. **The homepage is cut from 2,325 words to about 1,200.** The Math calculator moves to
+   `/diagnostic`. The pricing inclusion list moves to `/build`. Components leave the
+   homepage. The three how-we-price cards and three guarantee cards collapse into the lines
+   that already said the same thing. The hero gains both prices and a product screenshot.
+6. **`/diagnostic` is rebuilt.** It had no spec, so it drifted into a different voice, scored
+   the retired pillars, and carried an invented value stack and a fabricated statistic.
+7. **The FAQ keeps all twelve entries** but grouped in three, two columns, ~56px rows.
+
+What stays untouched: the hero hook, "you are the marketing," the before-and-after, the
+testimonials, and the How it works steps. If your diff rewrites those, you have gone too
+far.
 
 ## Build order
 
 1. Foundation: tokens, Plus Jakarta Sans, Pill component, shared section component, config,
    data files, header with anchor nav, footer, the industry route
 2. Hero, including the credential strip
-3. You are the marketing, with the Math calculator inside it
+3. You are the marketing. The Math calculator is NOT in this section any more
 4. Two options
 5. Signal, with the before/after module inside it
 6. The Six
-7. Pricing, four blocks, guarantee inside block 4
+7. Pricing, three blocks. No inclusion list, no Components block
 8. How it works
 9. Proof, Industries, FAQ, Final CTA
-10. `/build`, then `/components` and `/signal-plus`
+10. `/diagnostic`, the conversion page
+11. `/build`, then `/components` and `/signal-plus`
 
 Homepage section order, top to bottom: **Hero, You are the marketing, Two options, Signal,
 The Six, Pricing, How it works, Proof, Industries, FAQ, Final CTA.** That is ten rendered
@@ -150,10 +169,10 @@ making the same argument. Full reasoning is at the top of `03-content.md`.
 
 | Was its own section | Now lives in |
 |---|---|
-| The Math | Inside "You are the marketing" |
+| The Math | `/diagnostic` |
 | Same business. Different week. | Inside "Signal" |
-| Guarantee | Inside Pricing, block 4 |
-| Not ready for Signal | Inside Pricing, block 3 |
+| Guarantee | Inside Pricing, block 3, as body copy not cards |
+| Not ready for Signal | `/components` only |
 
 Do not restore any of these as a standalone section without removing its replacement. The
 page is being rebuilt to stop saying the same thing in four places.

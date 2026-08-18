@@ -58,8 +58,9 @@ Build the foundation only:
 5. Delete the /signal and /pricing pages and 301 them to /#signal and /#pricing. 301
    /calibration to /build. Add the three anchor ids when you stub the sections below so
    the redirects have somewhere to land.
-6. The hero, copy verbatim from docs/03-content.md, with the photograph and the credential
-   strip
+6. The hero, copy verbatim from docs/03-content.md: both prices, a SCREENSHOT of the actual
+   Signal interface (not a stock photo), and the credential strip. If no screenshot exists,
+   stop and tell me rather than substituting a photo.
 7. SixStack stubbed. It has one variant, `detail`, built later in prompt 5
 8. Empty labeled placeholders for the remaining homepage sections in the order given in
    docs/00-START-HERE.md. There are ten. One of them, Signal, does not exist in the
@@ -72,22 +73,20 @@ tokens and the typeface you are using. Then build.
 
 ---
 
-## Prompt 2, You are the marketing, with the Math inside it
+## Prompt 2, You are the marketing
 
 ```
 Read the "You are the marketing" section of docs/03-content.md.
 
-Build one section, not two. The Math calculator lives inside this section beneath the
-second paragraph, with a subheading only: no second eyebrow, no second section wrapper, no
-section padding of its own. The calculator already exists on the live site. Keep it and
-move it.
+One section: eyebrow pill, headline, two body paragraphs, then the --steel closing line
+about the gap.
 
-Order inside the section: eyebrow pill, headline, two body paragraphs, the "Here is what
-that costs" subheading, the calculator, the closing line beneath the module, then the
---steel closing line about the gap.
+The Math calculator does NOT live here. It moves to /diagnostic, built in a later step. If
+the calculator is currently inside this section on the live site, remove it here and leave
+it for that step.
 
-Read the Rule 2 note in docs/03-content.md before you touch the calculator. Do not add any
-projection of what Signal would recover, and do not change the default inputs.
+The headline emphasises "You are the marketing" inline. Do not let this section reopen with
+"Every lead you get runs through your memory" if the hero already used that sentence.
 ```
 
 ---
@@ -159,34 +158,31 @@ written.
 ## Prompt 6, Pricing
 
 ```
-Read the "Pricing" section of docs/03-content.md, the pricing structure in docs/02-architecture.md,
-and brand.ts, included.ts, buildRows.ts, components.ts, and noSurprises.ts in
+Read the "Pricing" section of docs/03-content.md and the pricing structure in
+docs/02-architecture.md, plus brand.ts, buildRows.ts and noSurprises.ts in
 docs/04-data-files.md.
 
-Four stacked blocks on --cream using the card idiom, in this order: Signal monthly, the
-build, Components, No surprises. Do not lead with the build fee.
+THREE blocks on --cream, not four: Signal monthly, the build, No surprises. Do not lead
+with the build fee.
 
 Block 1: $297 in display type, the seat rule in one sentence, then exactly three
-signalExamples rows under the heading "For example", then the inclusion list rendered once.
-Three rows, not eight. They are not selectable and are not tiers. There is no
-monthly/annual toggle in this build.
+signalExamples rows under "For example", then a text link to /build reading "See everything
+included". The twenty-item inclusion list is NOT on the homepage any more. Move it to
+/build.
 
 Block 2: $9,240 in display type, the comparison sentence, then buildRows.ts as a two-column
-table. The subtotal row is --steel, the emphasis row is the only one in display type. No
-checkboxes, no selectors, no running total.
+table with an amber "20% off" pill on the final row. Then ONE --steel line about lines
+coming off, then the closing contrast line and a link to /build. The three how-we-price
+cards are deleted; that single line replaces them.
 
-Block 3 absorbs the old standalone "Not ready for Signal" section, which is deleted. Four
-Components, name and short description only. State $97/mo and the no-build-fee once above
-the list, not on every row. Keep this block visually quieter than blocks 1 and 2: it is a
-fallback, not a third option of equal weight. Do not build a Signal versus Component
-comparison and do not add Components to the header nav.
+Block 3: heading, one body paragraph, then the noSurprises list. The three guarantee cards
+are deleted; the paragraph and the list already carried their content.
 
-Block 4 absorbs the guarantee section, which is deleted as a standalone. Its headline, body,
-and three cards move in above the noSurprises list. The whole block is body-size type with
-real spacing. It is not fine print. Render {{TEXT_ALLOWANCE_POLICY}} literally.
+Components are removed from this section and from the homepage entirely. They live on
+/components, linked from one FAQ answer and the footer.
 
-By the end of this prompt, two live sections have been removed and nothing they said has
-been lost. Confirm both in your reply.
+This section was 34% of the page. When you are done it should be under a quarter of the
+page height. Run checks/spec-check.js and confirm.
 ```
 
 ---
@@ -227,7 +223,9 @@ Industries: renders only published entries. None are published, so it must retur
 leave no heading, spacing, or empty container. Confirm in your reply that it renders
 nothing today.
 
-FAQ: accordion, hairline dividers, no cards, a plus that rotates to a minus. Render
+FAQ: all twelve entries, grouped under the three headings in FAQ_GROUPS, two columns on
+desktop and one on mobile, rows about 56px tall, all closed on load, hairline dividers, a
+plus that rotates. Numbers padded to two digits, 01 through 12, never 010. Render
 {{WEBSITE_CANCELLATION_TERMS}} literally, do not write around it.
 
 Final CTA: full width brand gradient, left aligned, one headline, one amber button, one
@@ -236,7 +234,36 @@ line beneath, no form. Build it as a reusable Cta component, it appears on four 
 
 ---
 
-## Prompt 9, /build
+## Prompt 9, /diagnostic
+
+This is the conversion page. Every button on the site points at it, and it is currently the
+weakest asset on the site. If you only do one of these prompts properly, do this one.
+
+```
+Read the /diagnostic section of docs/03-content.md in full, plus six.ts in
+docs/04-data-files.md.
+
+Rebuild the page in the site's own voice and design system: Plus Jakarta Sans, sentence-case
+pill eyebrows, amber buttons, cards, brand gradient.
+
+Delete every emoji, the "$297 Value / $197 Value / $497 Value / Total Real Value: $991"
+stack, the "3 Secrets" framing, "ATTENTION SMALL BUSINESS OWNERS", "Flushing Money Down The
+Drain", "transforms your lead conversion overnight", and the claim about losing 65% of
+unanswered callers within 3 minutes. Invented values and invented statistics are rule
+violations, not style choices.
+
+It scores the SIX SYSTEMS from six.ts. Delivery, Visibility, Responsiveness, Repeat Business
+and New Leads are retired and appear nowhere.
+
+The Math calculator moves here from the homepage. Its average customer value default is
+$300, not $750. Read the Rule 2 conditions in docs/03-content.md before touching it.
+
+Copy is verbatim from docs/03-content.md. Run checks/spec-check.js on this page when done.
+```
+
+---
+
+## Prompt 10, /build
 
 ```
 Read the /build section of docs/03-content.md, plus six.ts and addOns.ts in docs/04-data-files.md.
@@ -257,7 +284,7 @@ data files and must not be invented.
 
 ---
 
-## Prompt 10, /components and /signal-plus
+## Prompt 11, /components and /signal-plus
 
 ```
 Read the /components and /signal-plus sections of docs/03-content.md, plus components.ts and
