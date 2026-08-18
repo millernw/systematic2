@@ -53,7 +53,7 @@ page-level CSS overrides it.
 
 | Route | Purpose | In nav? |
 |---|---|---|
-| `/` | Homepage. Carries the entire offer. | Wordmark |
+| `/` | Homepage. Carries the whole offer at decision depth. | Wordmark |
 | `/build` | The six in full, worked examples, add-ons. Read-only. | No, linked from pricing |
 | `/components` | The four Component offers in detail | No, linked from pricing, the downsell, and the footer |
 | `/signal-plus` | Signal+ services and prices | No, linked from one FAQ answer and the footer |

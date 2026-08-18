@@ -34,9 +34,11 @@ judgment.
 - **There is one product, called Signal.** It has a one-time build and a monthly
   subscription. The build has no brand name. If you write the word "Calibration" anywhere
   in rendered output, that is a defect.
-- **The homepage carries the entire offer.** Both prices, all six systems, the Components
-  downsell. Subpages are optional reading. Moving something essential onto a subpage
-  recreates the problem this site was rebuilt to fix.
+- **The homepage carries the whole offer at decision depth.** Both prices in the hero, the
+  six systems with prices, and enough to decide to contact us without clicking anything.
+  That is not the same as every detail: reference material a buyer reads after deciding,
+  like the inclusion list and the add-on catalogue, belongs on `/build`. Components are not
+  on the homepage at all.
 - The six systems sort by their `order` field, never by array position. Core Build is 1 at
   the base and the other five rest on it. The order is the argument.
 - The six names in `six.ts` and the four names in `components.ts` overlap exactly on

@@ -33,12 +33,13 @@ is correct.
 ## The one thing this page sells
 
 Signal. One product, one page. It has a one-time build price and a monthly price, the way
-any serious software has an implementation fee and a subscription. The homepage carries
-the entire offer end to end. A reader never has to visit a second page to understand what
-they are buying or what it costs.
+any serious software has an implementation fee and a subscription. Both numbers are in the
+hero. A reader must be able to decide to contact us without clicking anything.
 
-There is no second product on this site. Components are a smaller way into the same
-product and are always visually subordinate to it. Signal+ is not sold here at all.
+That is decision depth, not total detail. Reference material a buyer reads *after* deciding
+to care, the inclusion list and the add-on catalogue, lives on `/build`. Components live on
+`/components` and are not on the homepage at all: a homepage selling two things makes a
+first-time visitor choose before they are equipped to. Signal+ is not sold here at all.
 
 ## Ten sections, and roughly 1,200 words
 
