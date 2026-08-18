@@ -357,6 +357,78 @@ head is not reading the rest of the page until they get an answer.
 
 ---
 
+## src/config/meta.ts
+
+Page titles and descriptions. These control what appears in a search result and what
+unfurls when somebody pastes a link into a text message, which for this audience is how
+most links travel. Nothing outside `industries.ts` had them before.
+
+Titles are under 60 characters, descriptions under 155, and neither uses a phrase banned by
+Rule 3.
+
+```ts
+export const META = {
+  "/": {
+    title: "Signal, a marketing system for small business · Systematic",
+    description: "One system that catches your leads, answers them fast, books them, and follows up. Built around your business, then run for you. $9,240 to build, $297 a month.",
+  },
+  "/diagnostic": {
+    title: "Free Six-Point Scorecard · Systematic",
+    description: "Score your business on the six systems using what is already public about you, then find out which one is costing you the most. About a minute, no account needed.",
+  },
+  "/build": {
+    title: "Every line of a build, published · Systematic",
+    description: "The six systems, what each one includes, and what each one costs. Same prices for every customer, itemized before anything starts.",
+  },
+  "/components": {
+    title: "Components, one problem one tool · Systematic",
+    description: "One focused tool that solves one problem and stops there. Built at no charge, live in days, $97 a month.",
+  },
+  "/work": {
+    title: "The work · Systematic",
+    description: "Real northeast Indiana businesses and what actually got built for each one. No invented statistics.",
+  },
+  "/about": {
+    title: "Who builds this · Systematic",
+    description: "Systematic is Nathan Miller. 15+ years in marketing, three businesses founded and operated, based in Columbia City, Indiana.",
+  },
+  "/signal-plus": {
+    title: "Signal+, the hands-on work · Systematic",
+    description: "Ads, content and campaign management, layered on once your system is already running. Flat monthly, never hourly.",
+  },
+} as const;
+```
+
+Every page reads its own entry. No page invents a title, and no title is hardcoded in a
+component. The homepage description is the only place both prices appear in metadata, and
+that is deliberate: it qualifies the click before it costs anything.
+
+---
+
+## src/content/caseStudies.ts
+
+`/work` only. Quotes come from `testimonials.ts` and are not duplicated here.
+
+```ts
+export const CASE_STUDIES = [
+  { id: "sugarcreek", name: "Sugar Creek Donuts", what: "Family donut shop",
+    builtList: "{{BUILT_LIST_SUGARCREEK}}", testimonialId: "sugarcreek" },
+  { id: "joshouse", name: "Jo's House", what: "Wellness retreat",
+    builtList: "{{BUILT_LIST_JOSHOUSE}}", testimonialId: "joshouse" },
+  { id: "lando", name: "Lando Commando", what: "Outdoors personal brand",
+    builtList: "{{BUILT_LIST_LANDO}}", testimonialId: "lando" },
+  { id: "chamber", name: "Whitley County Chamber of Commerce", what: "Membership organization",
+    builtList: "{{BUILT_LIST_CHAMBER}}", testimonialId: "chamber" },
+] as const;
+```
+
+Four `builtList` tokens are unresolved and render literally. Only Nathan knows what was
+actually built for each client, and a proof page is the worst place on the site to guess.
+Each one should become a short list using the same system and component names as the
+homepage, so a reader who just learned the six recognises them here.
+
+---
+
 ## src/content/signalPlus.ts
 
 ```ts

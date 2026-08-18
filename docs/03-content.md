@@ -573,6 +573,120 @@ Line beneath: Free, about a minute, you keep the findings.
 
 ---
 
+# /work
+
+The proof page, and the second most conversion-relevant page on the site after
+`/diagnostic`. It had no spec, which is the condition that let `/diagnostic` drift.
+
+**What this page is for:** a reader who believes the offer but not yet the person. It
+answers "has he done this before, for someone like me." Nothing else.
+
+**Rule 2 applies with full force here.** A case study describes **what was built**, never
+what it produced. No lead counts, no revenue, no growth percentages, no before-and-after
+metrics. The only numbers allowed on this page are ones a named client says about their own
+business, inside quotation marks, attributed to them. That constraint is not a weakness on a
+proof page: everyone else's case studies are unverifiable numbers, and a plain list of what
+was actually built reads as true.
+
+## Header block
+
+Eyebrow pill: The work
+
+Headline: What a build actually looks like.
+
+Body: These are real businesses in northeast Indiana. Each one has a list of what got built,
+in their words where they gave them. What you will not find is a chart claiming their
+revenue tripled, because we cannot prove that and neither can anybody else showing you one.
+
+## The case studies
+
+One card per client, from `caseStudies.ts`, full width and stacked. Each card has three
+parts in this order:
+
+1. **Who they are.** Business name and one line on what they do.
+2. **What we built.** A list of the systems and components, using the same names as the
+   homepage. A reader who just learned the six systems must recognise them here. This is the
+   whole reason the page works.
+3. **What they said.** Their quote, attributed, or nothing at all. Never a fabricated quote
+   and never a paraphrase presented as a quote.
+
+Four clients: Sugar Creek Donuts, Jo's House, Lando Commando, and Whitley County Chamber of
+Commerce. The quotes already exist in `testimonials.ts` and are reused, not rewritten.
+
+The built-lists for each are `{{BUILT_LIST_SUGARCREEK}}`, `{{BUILT_LIST_JOSHOUSE}}`,
+`{{BUILT_LIST_LANDO}}` and `{{BUILT_LIST_CHAMBER}}`. **Render these tokens literally.** Only
+Nathan knows what was actually built for each client, and inventing a plausible list on a
+proof page is the worst possible place to guess.
+
+## Closing block
+
+Heading: Most of this was built before it had a name.
+
+Body: The six systems are what these builds turned out to have in common. If your business
+looks like one of these, the audit is where we work out which of the six you are missing.
+
+Then the shared CTA component.
+
+## What this page does not have
+
+No logo wall. No star ratings rendered as graphics. No "results" strip. No industry filter.
+No before-and-after screenshots of websites, which say nothing about whether the phone rang.
+
+---
+
+# /about
+
+Linked from the homepage proof section as "More about who builds this," and in the header
+nav. For a solo operator this page carries more weight than it would at an agency: the
+reader is deciding whether to hand their marketing to one specific person.
+
+## Header block
+
+Eyebrow pill: Who builds this
+
+Headline: One person builds it, and you will know which one.
+
+Body: Systematic is Nathan Miller. When you book the audit you talk to me, when the system
+gets built I build it, and when something breaks you are not filing a ticket into a queue.
+That is the trade: you get one person who knows your business, and you do not get a team of
+twelve.
+
+That closing concession stays. It names the real limitation of a solo operator before the
+reader thinks of it, which is the only way to be believed about the upside.
+
+## Background
+
+Three facts, as cards. These are already on the live site and are true.
+
+**15+ years in marketing.** Agency side, in-house, and running my own.
+**3 businesses founded and operated.** I have been the owner answering his own phone.
+**Both sides.** I have sold marketing, bought marketing, and had to live with the results.
+
+## Why this exists
+
+Heading: Why I build systems instead of running campaigns.
+
+Body: {{ABOUT_ORIGIN_STORY}}
+
+**Render that token literally.** This is the one paragraph on the site that has to be in
+Nathan's own words and cannot be written for him. Two hundred words on why he stopped doing
+campaign work and started building systems, in first person, plain.
+
+## Where
+
+Heading: Columbia City, Indiana.
+
+Body: Based in Columbia City and working across northeast Indiana and beyond. Whitley County
+Chamber of Commerce member and client. Most of the businesses on the work page are within an
+hour of here.
+
+Local specificity is a conversion asset for this audience, not a limitation. Do not soften
+it to "serving businesses nationwide."
+
+Then the shared CTA component.
+
+---
+
 # /build
 
 This page exists for one reason: the reader who wants to see every line before they talk

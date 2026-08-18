@@ -95,6 +95,45 @@
           price > -1 ? `${secs[price].offsetHeight}px` : "n/a");
   }
 
+  // ---- mobile, runs whenever the viewport is under 768 ----
+  if (innerWidth < 768) {
+    check("No horizontal scroll", document.documentElement.scrollWidth <= innerWidth + 1,
+          `${document.documentElement.scrollWidth}px in ${innerWidth}px`);
+
+    const small = els("a,button,summary,[role=button]").filter(e => {
+      const r = e.getBoundingClientRect();
+      return r.width > 0 && r.height > 0 && (r.width < 44 || r.height < 44);
+    });
+    check("Tap targets at least 44px", small.length === 0,
+          small.slice(0,4).map(e => (e.innerText||e.tagName).trim().slice(0,18)).join(" | "));
+
+    check("Sticky CTA bar exists",
+          els("*").some(e => getComputedStyle(e).position === "fixed" &&
+                             /scorecard|audit/i.test(e.textContent || "")));
+
+    if (url === "/" || url === "") {
+      const stack = els("*").find(e => /Core Build/.test(e.textContent||"") && /\$2,800/.test(e.textContent||""));
+      check("Core Build detail is open on load",
+            !!stack && /one login or nine/i.test(stack.textContent || ""));
+    }
+  }
+
+  // ---- work ----
+  if (/\/work/.test(url)) {
+    check("No results claims on the proof page",
+          !/\b\d+%|\btripled\b|\bincreased\b|\bgrew\b|\bROI\b/i.test(t));
+    check("Uses homepage system names",
+          /Core Build|Never Miss a Lead|Fill the Calendar/.test(t));
+  }
+
+  // ---- meta, every page ----
+  const title = document.title || "";
+  check("Page has a title under 60 chars", title.length > 0 && title.length <= 60, `${title.length}: ${title}`);
+  const desc = document.querySelector('meta[name="description"]');
+  check("Page has a description under 155 chars",
+        !!desc && desc.content.length > 0 && desc.content.length <= 155,
+        desc ? String(desc.content.length) : "missing");
+
   // ---- diagnostic only ----
   if (/diagnostic/.test(url)) {
     check("No invented value stack", !/Total Real Value|\$\d+ Value/i.test(t));

@@ -15,6 +15,7 @@ If you find yourself typing "Signal" or "$297" inside a `.tsx` file, stop.
 src/
   config/
     brand.ts              product names, tiers, prices, policy strings
+    meta.ts               page titles and descriptions, one entry per route
   content/
     six.ts                the six systems
     buildRows.ts          the homepage build price table
@@ -23,6 +24,7 @@ src/
     steps.ts              Audit, Build, Run
     components.ts         the four Component entry offers
     testimonials.ts       real named client quotes, plus credentials
+    caseStudies.ts        /work entries, built-lists still unresolved
     beforeAfter.ts        the four Now/After pairs
     noSurprises.ts        the transparency list
     faqs.ts               FAQ entries
@@ -59,7 +61,9 @@ page-level CSS overrides it.
 | `/signal-plus` | Signal+ services and prices | No, linked from one FAQ answer and the footer |
 | `/industries/[slug]` | Industry funnel pages | Only when a published entry exists |
 | `/diagnostic` | The Scorecard. Every button on the site points here. | No, it is the CTA target |
-| `/about`, `/work`, `/media`, `/contact` | Company pages, no offer content | About in nav, rest under More |
+| `/work` | Case studies. The proof page. | No, under More and linked from Proof |
+| `/about` | Who builds this. | Yes |
+| `/media`, `/contact` | Company pages, no offer content | Under More |
 
 ### Three pages are deleted
 

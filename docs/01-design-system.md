@@ -206,6 +206,80 @@ not, so use `--paper` at reduced opacity for de-emphasized text there.
 The interactive stack must be operable by keyboard: each level is a real button, arrow keys
 move between levels, and the detail panel is an `aria-live` region.
 
+## Mobile
+
+Assume the reader is on a phone, standing up, between jobs. This section governs, and where
+it conflicts with a desktop instruction elsewhere in this file, mobile wins.
+
+Breakpoints: mobile under 768, tablet 768 to 1023, desktop 1024 and up.
+
+### The rule that matters most
+
+**Nothing important may require a tap to become visible.** On desktop, an interaction that
+reveals detail is engaging. On a phone it is a wall, because the reader cannot see that
+anything is behind it. Every collapse-by-default pattern on mobile must show enough in its
+closed state to be worth opening.
+
+### Hero
+
+Stacks in this order, and the order is not negotiable:
+
+1. Accent line and headline
+2. Subhead
+3. Price line
+4. Primary button, full width
+5. The product screenshot
+
+The screenshot goes **below** the button, not above it. A phone screen fits roughly a
+headline and one button above the fold, and the button must be in that space. The
+screenshot is the reward for the first scroll, not the thing that pushes the CTA off screen.
+
+Credential strip wraps to two lines, stays inside the gradient, does not become a list.
+
+### Sticky CTA bar
+
+Below 768px, a sticky bar pins to the bottom of the viewport from the moment the hero
+button scrolls out of view: `--amber` button, full width minus 16px gutters, the label from
+`BRAND.ctaLabel`, on a `--paper` bar at 95% with the standard 12px blur and a hairline top
+border. It hides again when the final CTA section enters the viewport, so the reader never
+sees two competing buttons.
+
+This is the single highest-value mobile element on the site. A phone reader is one thumb
+away from converting at every point in the page.
+
+### The six-level stack
+
+On desktop the stack is a pyramid with a detail panel beside it. On mobile that interaction
+costs six taps to see six systems, and most readers will tap once and leave.
+
+Below 768px, `SixStack` renders as a **vertical accordion**, base at the bottom preserved as
+reading order 01 to 06 top to bottom. Every row always shows its number, label and price.
+The first row, Core Build, is **open on load**; the rest are closed. Opening one does not
+close the others.
+
+No pyramid narrowing on mobile. Full-width rows.
+
+### Everything else
+
+- Multi-card sections stack to one column, full width, 24px card padding, 16px gaps
+- The before/after module stacks as **paired rows**: the ✕ line and its matching ✓ line
+  together, then the next pair. Never two separate columns of four, which breaks the pairing
+  that makes the module work
+- Pricing tables keep two columns, name left and price right. Never a horizontal scroll and
+  never a card per row
+- The FAQ goes to one column, groups intact, all closed on load
+- Section padding 40px, gutters 16px
+- Type: hero 34px, section headline 30px, subsection 22px, body stays 17px
+
+### Quality floor
+
+- Every tap target is at least 44 by 44 CSS pixels, including FAQ rows and accordion headers
+- The page never scrolls horizontally at 360px. Wide content scrolls inside its own
+  container, never the body
+- Tap targets never sit closer than 8px to each other
+- Text never sits under the sticky bar: the page gets bottom padding equal to the bar height
+- Do not rely on hover for anything. Hover does not exist here
+
 ## Anti-patterns
 
 These are what make a site read as machine-generated. Any one of them is a defect.
@@ -224,5 +298,6 @@ These are what make a site read as machine-generated. Any one of them is a defec
 - An "AI-powered" badge
 - Invented client logos, invented testimonials, invented statistics
 - White text on `--amber`
+- Anything on mobile that needs a tap before the reader can tell it is worth tapping
 - Numbered markers on content that is not a sequence. The stack, How It Works, and the FAQ
   are sequences. Nothing else is.
