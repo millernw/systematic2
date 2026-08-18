@@ -46,8 +46,9 @@ judgment.
   as the same product at a smaller size.
 - One shared `Section` component owns all vertical padding. Never set padding on an
   individual section. When spacing looks wrong the cause is a competing class.
-- Signal has one price that scales by seats, not tiers or packages. Render the seat rows as
-  a reference table and the inclusion list once. Nothing is selectable, nothing is gated.
+- Signal has one price that scales by seats, not tiers or packages. Three example rows on
+  the homepage, never a row per seat count. Nothing is selectable, nothing is gated. The
+  inclusion list is on `/build`, not the homepage.
 - The pricing build table and `/build` publish prices and are read-only. No checkboxes, no
   totals, no estimator.
 - Signal+ appears in exactly four places: one line under How It Works, one FAQ answer,
@@ -77,7 +78,10 @@ the following, you are rebuilding a site that no longer exists:
 - Replacing cards with hairline lists. **Cards are the container idiom.** The old "lists
   beat cards" rule applied to a site with no images and no interactive modules, and it no
   longer applies.
-- Removing photography. The site uses real small-business photography on purpose.
+- Removing photography. The site uses real small-business photography on purpose. The one
+  exception is the hero, which carries a **screenshot of the actual Signal interface**, not
+  a photo of a person. The core claim is one login instead of nine, and that stays abstract
+  until the reader sees the login.
 
 ## `prompts/`
 
