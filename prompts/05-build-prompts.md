@@ -4,6 +4,16 @@ This file is for you, not for the tool. Each prompt is short on purpose: the det
 in the reference docs, so the tool reads a current spec instead of your recollection of
 one.
 
+## Run the check after every step
+
+`checks/spec-check.js` turns the rules in `docs/` into pass/fail. Paste it into the browser
+console on the page you just changed and read the failures. Do this after every single step,
+not at the end.
+
+This exists because prose rules decay. A correction written only as a prompt is a patch the
+repo does not know about, so the next session rebuilds toward the repo and quietly undoes
+it. The check is what makes a fix stick.
+
 ## Setup, do this first
 
 **If you are using Cursor, Claude Code, or Windsurf:** put all six documents in `/docs` in

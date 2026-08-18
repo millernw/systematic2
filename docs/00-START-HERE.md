@@ -47,6 +47,15 @@ say funnel, stack, omnichannel, or operating system.
 
 The one job of the homepage: get a skeptical owner to book the audit.
 
+## Check your work before you report it
+
+`checks/spec-check.js` at the repo root turns these rules into pass/fail. Run it in the
+browser console on any page you changed and fix the failures before telling me you are done.
+Reporting a step complete without running it is not acceptable.
+
+Rationale for any rule that looks arbitrary lives in `DECISIONS.md`. You do not need to read
+that file to do the work.
+
 ## The seven rules
 
 These override anything else, including your own judgment about what would look good.

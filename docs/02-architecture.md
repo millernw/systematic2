@@ -58,6 +58,7 @@ page-level CSS overrides it.
 | `/components` | The four Component offers in detail | No, linked from pricing, the downsell, and the footer |
 | `/signal-plus` | Signal+ services and prices | No, linked from one FAQ answer and the footer |
 | `/industries/[slug]` | Industry funnel pages | Only when a published entry exists |
+| `/diagnostic` | The Scorecard. Every button on the site points here. | No, it is the CTA target |
 | `/about`, `/work`, `/media`, `/contact` | Company pages, no offer content | About in nav, rest under More |
 
 ### Three pages are deleted
@@ -84,7 +85,7 @@ Every remaining subpage is optional reading. If a fact only exists on a subpage,
 the wrong place. The subpages hold detail and depth, never the offer itself.
 
 Header nav: Signal, The Six, Pricing, About, plus Industries only when at least one
-industry is published. One `--amber` button, "Get my free Six-Point Audit". The header is
+industry is published. One `--amber` button, "Get my free Six-Point Scorecard". The header is
 sticky, `--paper` at 95%, with a 12px backdrop blur and a hairline bottom border.
 
 ## Industry pages
@@ -139,29 +140,27 @@ per seat count.
 
 ## Pricing section structure
 
-Four stacked blocks on `--cream`, using the card idiom from `01-design-system.md`:
+**Three blocks, not four**, on `--cream`, using the card idiom. This section was 34% of the
+homepage and is now roughly half its former size.
 
-1. **Signal monthly.** `$297` in display type, the seat rule in one sentence beneath it,
-   then the three `signalExamples` rows. Beneath that, ONE inclusion list from
-   `included.ts` grouped under the six system labels.
-
-   Do not build columns that each repeat a feature list. Nothing is gated by price here, so
-   a layout implying different packages contradicts the only claim this block makes.
+1. **Signal monthly.** `$297` in display type, the seat rule in one sentence, three
+   `signalExamples` rows under "For example", and a text link to `/build` reading "See
+   everything included". The twenty-item inclusion list is NOT here any more. It lives on
+   `/build`. Nothing in this block is selectable and nothing is gated.
 
 2. **The build.** `$9,240` in display type, the comparison sentence, then `buildRows.ts` as
-   a two-column table with mono prices right-aligned. The `subtotal` row is `--steel`, the
-   `emphasis` row is the only one in display type and carries an amber `20% off` pill. Then
-   three cards, the closing contrast line, and a text link to `/build`.
+   a two-column table. The `subtotal` row is `--steel`; the `emphasis` row is the only one
+   in display type and carries an amber `20% off` pill. One `--steel` line beneath about
+   lines coming off, then the closing contrast line and a link to `/build`. No calculator,
+   no checkboxes, no running total. The three "how we price" cards are gone.
 
-   No calculator, no estimator, no checkboxes, no running total. The table publishes prices,
-   it does not let a visitor price themselves.
+3. **No surprises.** Heading, one body paragraph, then `noSurprises.ts`. Body-size type,
+   real spacing, not fine print. The three guarantee cards are gone; the paragraph and the
+   list already carried their content.
 
-3. **Components.** The four from `components.ts`, name and `short` only, one card each. The
-   `$97/mo` and the no-build-fee are stated once above the list, not per row, because all
-   four are identical on both. Text link to `/components`.
-
-4. **No surprises.** Rendered from `noSurprises.ts` with an `--emerald` check per item.
-   Body-size type, real spacing. This is not fine print and must not be styled as such.
+**Components do not appear in this section or anywhere on the homepage.** They live on
+`/components`, linked from one FAQ answer and the footer. A homepage that sells two things
+makes a first-time visitor choose before they can.
 
 ## The section component
 

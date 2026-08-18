@@ -40,35 +40,38 @@ they are buying or what it costs.
 There is no second product on this site. Components are a smaller way into the same
 product and are always visually subordinate to it. Signal+ is not sold here at all.
 
-## Ten sections, and why it is ten
+## Ten sections, and roughly 1,200 words
 
-The homepage is **ten rendered sections**. The live site has fourteen and an earlier draft
-of this file also had fourteen. Four were cut, and none of the copy was lost. Every cut
-removed a *second* section making an argument some other section was already making:
+The homepage is **ten rendered sections and about 1,200 words**. It was 2,325. The section
+count did not change in this pass; the density did. A first-time visitor was reaching the
+third consecutive pain section before learning what we sell, and the pricing section alone
+was 34% of the page.
 
-| Was its own section | Now lives in | Why |
-|---|---|---|
-| The Math | Inside "You are the marketing" | Same argument. One says the follow-up stops, the other prices it. They are one thought and the calculator is the payoff of the paragraph above it. |
-| Same business. Different week. | Inside "Signal" | It shows what having the product is like, which is what the Signal section exists to argue. As a standalone it was a third consecutive pain section. |
-| Guarantee | Inside Pricing, block 4 | "We keep fixing it," "zero hidden charges," and "you keep your data" are no-surprises claims. They belong beside the prices they qualify, not in a gradient section of their own. |
-| Not ready for Signal | Inside Pricing, block 3 | The page had a Components block in pricing and a Components section after it. One of them was always going to be redundant. |
+What is no longer on the homepage, and where it went:
 
-The reader's path is now: here is your problem, here is what it costs you, here is why the
-two obvious fixes failed, here is the product, here is what is in it, here is what it costs,
-here is how you start, here is who else did it, here are your objections, here is the
-button. Nothing in that sequence is said twice.
+| Was on the homepage | Now |
+|---|---|
+| The Math calculator | `/diagnostic`, where a scorecard tool belongs |
+| The pricing inclusion list, 20 items | `/build`, behind "See everything included" |
+| The Components block | `/components` only, plus one FAQ answer and the footer |
+| Three "how we price" cards | One `--steel` line saying the same thing |
+| Three guarantee cards | The No surprises body paragraph, which already said it |
 
-**Do not restore a cut section without removing its replacement.** The failure mode this
-page is being rebuilt to escape is saying the same thing in four places.
+Two sections still carry a module inside them rather than standing alone: "Same business.
+Different week." lives inside Signal, and the guarantee lives inside Pricing.
 
----
+**The order is fixed:** the reader must learn what Signal is before they see it has six
+parts, and the price must come immediately after the six with nothing between.
+
+**Do not restore anything from that table without removing its replacement.** The failure
+mode this page keeps returning to is saying the same thing in several places.
 
 ## Header
 
 Sticky, `--paper` at 95%, backdrop blur, hairline bottom border.
 
 Nav: Signal, The Six, Pricing, About. Industries appears only when published.
-Button: Get my free Six-Point Audit
+Button: Get my free Six-Point Scorecard
 
 **Signal, The Six, and Pricing are anchor links to sections of the homepage.** They are
 `/#signal`, `/#the-six`, and `/#pricing`. They are not pages and they must never become
@@ -86,29 +89,37 @@ Smooth-scroll the anchors and offset for the sticky header.
 
 ## 1. Hero
 
-Brand gradient background, photograph on the right, text left. Not centered.
+Brand gradient background, text left, **a screenshot of the actual Signal interface on the
+right**. Not a photograph of a person. Not an illustration. A real screen.
 
 Accent line, in `--honey` with a hand-drawn underline beneath it, above the headline:
 You're the system.
 
 Headline: That's why your marketing stops when you get busy.
 
-Subhead: Every lead you get runs through your memory and your phone. We build systems that
-answer for you, follow up when they go quiet, ask for the review, and bring back last
-year's customers. We build it around your business and then we run it. You stop being the
-part that breaks.
+Subhead: We build the system that answers for you, follows up when they go quiet, asks for
+the review, and brings back last year's customers. Then we run it. You stop being the part
+that breaks.
 
-Product line, set apart from the subhead, slightly smaller, `--paper` at 80%:
-Signal is a done-for-you marketing system for small business. One build fee, then $297 a
-month. We build it, and then we run it.
+Price line, set apart, slightly smaller, `--paper` at 80%:
+Signal is a done-for-you marketing system for small business. $9,240 to build, less if you
+already have some of it, then $297 a month to run it.
 
-Primary button: Get my free Six-Point Audit
-Line beneath the button, small: About an hour. You keep the findings whether or not you
-hire us.
+Primary button: Get my free Six-Point Scorecard
+Line beneath the button, small: About a minute. No account needed, and you keep the
+findings whether or not you hire us.
 
-The live hero says "it starts at $297 a month." Rule 3 forbids "starts at" and the new
-offer does not need it, because both prices are now published. The line above replaces it.
-Do not put it back.
+**Both prices go in the hero.** "One build fee" without a number is a tease, and a reader
+who scrolls six sections to find $9,240 has already decided we were hiding it. Published
+pricing is the whole differentiator and half of it cannot be below the fold.
+
+**The screenshot is required, not decorative.** The core claim of this business is one
+login instead of nine. That claim is abstract until the reader sees the login. A page with
+2,000 words about software and no picture of the software is asking to be taken on faith.
+If no screenshot exists yet, stop and tell me. Do not substitute a stock photo.
+
+The subhead no longer opens with "Every lead you get runs through your memory." That
+sentence belongs to section 2 and was appearing in both places word for word.
 
 ### Credential strip
 
@@ -117,12 +128,6 @@ Not a section. No heading, no padding of its own, no cards.
 
 15+ years in marketing · 3 businesses founded and operated · Chamber member and client ·
 Columbia City, Indiana
-
-Full testimonials come much later on the page, which is correct, but a reader deciding
-whether to keep scrolling should not have to take a stranger entirely on faith. This line
-costs one row and buys that.
-
----
 
 ## 2. You are the marketing
 
@@ -144,36 +149,14 @@ person.
 
 This section is live copy and it is the best writing on the site. Do not rewrite it.
 
-### The Math, inside this section
+Closing line, set apart in `--steel`: The gap isn't between you and better marketing. It's
+between the work getting done and anyone following up on it. Everything below closes that
+gap.
 
-The calculator follows the second paragraph directly, with no new section wrapper, no
-section padding, and no eyebrow of its own. It gets a subheading only.
-
-Subheading: Here is what that costs.
-
-Line above the module: Using your own numbers. Adjust the inputs and watch the total move.
-
-The calculator itself is the existing live module. Inputs: average customer value, missed
-calls per week, unanswered inquiries per month, and a close-rate slider defaulting to 1 in
-5. Outputs: estimated lost clients per month, monthly drag, annual impact.
-
-Closing line beneath the module: Nothing about this gets worse suddenly. It just keeps
-costing about that much every month, and the month after, and you will never see it on a
-statement.
-
-Then the section's closing line, set apart in `--steel`: The gap isn't between you and
-better marketing. It's between the work getting done and anyone following up on it.
-Everything below closes that gap.
-
-**Rule 2 note, read this.** Rule 2 forbids claims about results. This module is the one
-place the site puts a dollar figure on screen, and it survives the rule only because of
-three things that are not optional: every number comes from the visitor's own inputs, the
-output is labeled "estimated," and it describes the cost of the current situation rather
-than a result Signal will produce. Never add a projection of what Signal would recover.
-Never pre-fill the inputs with flattering defaults. The moment this module implies an
-outcome, it is a rule violation and it has to come down.
-
----
+**The Math calculator is not on the homepage.** It moved to `/diagnostic`, where it belongs.
+On the homepage it was interactive friction placed before the reader knew what we sell, and
+it made three consecutive sections about the same pain. Its Rule 2 conditions travel with
+it and are restated in the `/diagnostic` spec below.
 
 ## 3. Two options
 
@@ -302,11 +285,12 @@ precisely because it concedes something.
 
 Anchor: `#pricing`
 
-Pricing comes immediately after The Six. The reader has just finished looking at exactly
-what gets built, and the very next question a real buyer has is what it costs. Nothing goes
-between these two sections. An earlier draft had the before-and-after module and the
-guarantee sitting in this gap, which delayed the price by two full screens at the moment of
-peak interest.
+Pricing comes immediately after The Six, with nothing between them. The reader has just
+seen exactly what gets built and the next question is what it costs.
+
+**This section was 34% of the page and three times larger than any other. It is now three
+blocks, not four, and the reference material lives on `/build`.** A reader on a first visit
+is deciding whether to talk to us, not auditing a feature list.
 
 Eyebrow pill: Pricing
 
@@ -315,8 +299,6 @@ Headline: Two numbers. Both published.
 Intro: Agencies quote you after three meetings. Software makes you guess which tier has
 the thing you need. Here is all of it.
 
-Four blocks. Cards on `--cream`, not hairline-separated rows.
-
 ### Block 1, Signal monthly
 
 Label: Signal, monthly
@@ -324,21 +306,17 @@ Label: Signal, monthly
 Price, in display type: $297 a month
 
 Line directly beneath: That covers the first three people. Every person after that is
-$100, and it stops at $997 no matter how big you get.
-
-Line above the examples: Every seat gets the whole system. No feature is ever locked
-behind a higher price, at any size.
+$100, and it stops at $997 no matter how big you get. Every seat gets the whole system,
+and no feature is ever locked behind a higher price.
 
 Examples heading: For example
-Three rows only, from `signalExamples` in `04-data-files.md`. These are illustrations of
-the sentence above, not tiers, not plans, not packages, and not selectable. Do not expand
-them back into a row per seat count.
+Three rows only, from `signalExamples` in `04-data-files.md`. Not tiers, not plans, not
+selectable.
 
-Inclusion list heading: Included at every price
-The list is in `04-data-files.md`, grouped under the six system labels.
+Text link: See everything included → /build
 
-Line beneath, in `--steel`: Support is the same at every price. One business day, and
-usually faster.
+**The inclusion list is not on the homepage.** Twenty items across seven groups is
+reference material for somebody who has already decided to care. It moved to `/build`.
 
 ### Block 2, the build
 
@@ -349,25 +327,13 @@ Price, in display type: $9,240 for all six systems
 Line directly beneath: The six priced separately come to $11,550. All six together is
 $9,240. Unless you already have a website worth keeping, five systems costs more than six.
 
-That second sentence is checkable against the table directly beneath it, which is the
-entire point of it. Do not restate it as "all six costs less than five," because that is
-only true when the system being dropped is not the website. The caveat is what makes the
-claim survive a reader who does the arithmetic.
-
 Build table heading: What each system costs on its own
-The rows are in `04-data-files.md`. The complete build row is the last row and is
-emphasized with an amber pill reading `20% off`.
+The rows are in `04-data-files.md`. The complete build row is last and carries an amber
+pill reading `20% off`.
 
-Three cards:
-
-**The list is the list.** Every system is the same price for every customer. Your quote is
-not based on what we think you can afford.
-
-**Lines come off.** Already have a site that works? That line comes off. Reviews handled?
-That comes off too. The audit is where that happens, and it usually brings the number down.
-
-**You see it first.** You get the itemized list with prices before anything starts. Nothing
-gets built that you did not approve.
+Line beneath the table, in `--steel`: Already have a site that works? That line comes off.
+Reviews handled? That comes off too. The audit is where that happens, and it usually brings
+the number down. You see the itemized list before anything starts.
 
 Closing line, set apart in `--steel`:
 An agency quote is one number with no line items and no way to check it. This is the
@@ -375,66 +341,34 @@ opposite of that.
 
 Text link: See the add-ons and what they cost → /build
 
-The live site says the build "runs $3,000 to $7,000" under the name Calibration. Both the
-range and the name are replaced by the block above.
+The three cards that used to sit here, "The list is the list", "Lines come off" and "You
+see it first", collapse into the single `--steel` line above. They said one thing in three
+boxes.
 
-### Block 3, Components
-
-This block absorbs the standalone "Not ready for Signal" section. It is the only place
-Components appear on the homepage.
-
-Label: Components, monthly
-
-Heading: Not ready for the whole system?
-
-Body: A Component is one focused tool that solves one problem and stops there. We build it
-free, it goes live in days, and it is $97 a month. If you later move to Signal, the $97
-stops that month, you are never billed for both, and the work already done is not torn out
-and rebuilt.
-
-The list is in `04-data-files.md`. Name and short description only. The full descriptions
-live on `/components`.
-
-The live site says Components start "at $97/mo." All four are exactly $97, so the word
-"starting" is both banned and inaccurate. State the price flatly.
-
-Text link: See the four components → /components
-
-Keep this block visually quieter than blocks 1 and 2. It is a fallback, not a third option
-of equal weight.
-
-### Block 4, No surprises
-
-This block absorbs the guarantee section.
+### Block 3, No surprises
 
 Label: No surprises
 
 Heading: We don't stop until it's right.
 
-Body: We build your marketing operating system around fixed scopes and published pricing.
-If the system isn't working the way we scoped it, we keep fixing it, no extra charge, no new
-invoice. We do not offer refunds. What we do instead is keep working until it is right.
-Everything runs month-to-month, so there's no long-term contract locking you in while we get
-it right.
-
-Three cards:
-
-**Get It Right Commitment.** We rebuild, retune, and adjust the build until it matches what
-we scoped, at no additional cost.
-
-**Zero hidden charges.** Every line item is pre-approved from our published price catalog.
-No hourly runaway costs or unexpected add-ons ever.
-
-**You keep your data.** You keep all audit findings, campaign data, and lead records
-regardless of subscription status.
+Body: We build around fixed scopes and published pricing. If the system isn't working the
+way we scoped it, we keep fixing it, no extra charge and no new invoice. We do not offer
+refunds. What we do instead is keep working until it is right. Everything runs
+month-to-month, so nothing locks you in while we get it right.
 
 Then the list from `noSurprises.ts`. Body-size type, real spacing, not fine print.
 
-Button at the bottom of the section: Get my free Six-Point Audit
+The three guarantee cards are gone. Their content is in the body paragraph above and in the
+noSurprises list, which already said the same things.
 
-The live version of the first card says "the Calibration build." It says "the build" now.
+Button at the bottom of the section: Get my free Six-Point Scorecard
 
----
+### Components are not on this page
+
+The Components block is removed from the homepage entirely. A homepage that sells two
+things forces a first-time visitor to make a choice they are not equipped to make. They
+live on `/components`, are linked from one FAQ answer and the footer, and remain a sales
+tool in conversation and in ads.
 
 ## 7. How it works
 
@@ -503,21 +437,138 @@ Eyebrow pill: Straight answers
 
 Headline: Frequently asked questions.
 
-Accordion, numbered 01 upward, hairline dividers, a plus that rotates to a minus. Entries
-are in `04-data-files.md`.
+All twelve entries stay. The count is not the problem; the footprint was. Twelve collapsed
+rows were taking 1,300px, about 108px per row for a single line of text.
 
----
+Treatment:
+- Rows collapse to roughly 56px each
+- Two columns on desktop, one on mobile
+- Grouped under three short headings: Money, The product, Working together
+- All closed on load, hairline dividers, a plus that rotates to a minus
+- Numbered 01 upward, padded to two digits. The live site renders 010, 011, 012, which is
+  a string-concatenation bug
+
+Group membership is in `04-data-files.md`.
 
 ## 11. Final CTA
 
 Brand gradient section, left aligned, no form.
 
 Headline: Find out which of the six you are actually missing.
-Button: Get my free Six-Point Audit
+Button: Get my free Six-Point Scorecard
 Line beneath: Free, about an hour, you keep the findings.
 
 The live version has a photo with an overlay pill reading `Running` and the line "Your
 systems answer leads and follow up even when your hands are full." Keep it.
+
+---
+
+# /diagnostic
+
+The conversion page. Every button on the site points here, so it is the most important page
+after the homepage. It previously had no spec at all, which is why it drifted into a
+different voice, a different framework, and two rule violations.
+
+**It is the same brand as the homepage.** Plus Jakarta Sans, pill eyebrows in sentence case,
+amber buttons, cards, brand gradient. Calm and specific, never loud.
+
+**Banned on this page, all currently present:** every emoji, the "$297 Value / $197 Value /
+$497 Value / Total Real Value: $991" stack, "3 Secrets" framing, "ATTENTION SMALL BUSINESS
+OWNERS", "Flushing Money Down The Drain", "transforms your lead conversion overnight", and
+the claim "You are losing 65% of unanswered inbound callers to competitors within 3
+minutes." Invented values and invented statistics are rule violations, not style choices.
+
+**It scores the six systems from `six.ts`.** Delivery, Visibility, Responsiveness, Repeat
+Business and New Leads are retired as pillar names and appear nowhere on this site.
+
+## The two things are named differently
+
+The Scorecard is instant, automated, and scored from public data. It is the front door and
+every button on the site points at it. The Audit takes about an hour with a person, is step
+one of How it works, and is what the Scorecard offers next. Never use one name for the
+other.
+
+## Header block
+
+Eyebrow pill: Free, no account needed
+
+Headline: Find out which of the six you are actually missing.
+
+Body: We score your business on the six systems using what is already public about you,
+then tell you which one is costing you the most. You keep the findings whether or not you
+hire us.
+
+Button: Run my free Six-Point Scorecard
+Line beneath: About a minute. No password, no account, and no sales call to get the result.
+
+## What we score
+
+Heading: The six systems, scored one at a time.
+
+Body: These are the same six we build, in the same order. The one at the bottom is the one
+everything else sits on.
+
+Render the six from `six.ts` in order, each showing `label` and `plainQuestion`. No prices
+on this page.
+
+## The Math
+
+The calculator moves here from the homepage, beneath the scoring section.
+
+Heading: What the gap is costing you.
+Line above the module: Using your own numbers. Adjust the inputs and watch the total move.
+Closing line: Nothing about this gets worse suddenly. It just keeps costing about that much
+every month, and the month after, and you will never see it on a statement.
+
+**Rule 2 conditions, not optional.** Every number comes from the visitor's own inputs, the
+output is labeled "estimated," and it describes the cost of the current situation rather
+than a result Signal will produce. Average customer value defaults to **$300**. The live
+site had it at $750, which doubled the figure and is exactly the flattering default this
+rule exists to prevent. Never add a projection of what Signal would recover.
+
+## What you get
+
+Heading: A score, and one thing to do about it.
+
+Three cards:
+
+**Your six scores.** Where each system stands right now, based on what a customer would
+find if they went looking for you today.
+
+**The one that is costing you most.** Not a list of forty things. The single system whose
+absence is doing the most damage.
+
+**What it would take to fix it.** What gets built, and what that line costs, from the
+published price list.
+
+## Proof
+
+Reuse the testimonial cards from `testimonials.ts`. Same component as the homepage.
+
+## FAQ
+
+Q: Do you need my passwords?
+A: No. We score what is already public about your business, the same way a customer would
+see it. There is nothing to log into and nothing to share.
+
+Q: Is it actually free?
+A: Yes, and you keep the findings whether or not you hire us. If the scorecard shows the
+problem is not something we build, we will tell you that.
+
+Q: What happens after I get my score?
+A: Nothing automatic. If you want to go further, the next step is the audit, which takes
+about an hour with a person and turns the score into an itemized quote.
+
+Q: Will you call me?
+A: Only if you ask us to.
+
+## Final CTA
+
+Brand gradient, the shared Cta component.
+
+Headline: Find out which of the six you are actually missing.
+Button: Run my free Six-Point Scorecard
+Line beneath: Free, about a minute, you keep the findings.
 
 ---
 

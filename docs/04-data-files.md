@@ -13,9 +13,10 @@ export const BRAND = {
   productDescriptor: "your marketing operating system",
   upsell: "Signal+",
   audit: "Audit",
-  auditPublicName: "Six-Point Audit",
-  ctaLabel: "Get my free Six-Point Audit",
-  ctaSubline: "About an hour. You keep the findings whether or not you hire us.",
+  scorecardName: "Six-Point Scorecard",   // instant, automated, the front door
+  auditName: "Six-Point Audit",           // about an hour, with a person, step 1 of the build
+  ctaLabel: "Get my free Six-Point Scorecard",
+  ctaSubline: "About a minute. No account needed, and you keep the findings whether or not you hire us.",
 
   support: "One business day, at every price",
 
@@ -315,33 +316,38 @@ seat-based pricing, and no replacement exists yet. Render the token literally.
 ## src/content/faqs.ts
 
 ```ts
+export const FAQ_GROUPS = ["Money", "The product", "Working together"] as const;
+
 export const FAQS = [
-  { q: "Are you an agency?",
+  { group: "The product", q: "Are you an agency?",
     a: "No. Agencies sell you hours and deliverables every month. We build a system and sell you access to it, the way you pay for the other software you rely on, except this one gets built around your business." },
-  { q: "What does it cost?",
+  { group: "Money", q: "What does it cost?",
     a: "Two numbers, both on this page. The build is $9,240 for all six systems, or less if you do not need all six, priced from the published list. Then Signal is $297 a month for the first three people, $100 for each person after that, and it stops at $997. There is nothing you have to ask us to find out." },
-  { q: "Why is there a build fee at all?",
+  { group: "Money", q: "Why is there a build fee at all?",
     a: "Because the system is built around your business rather than handed to you as a blank tool. The build is the part where somebody sets up your pipeline, writes your sequences, connects your calendar and phone, and trains your people. That work happens once, so you pay for it once." },
-  { q: "Do I own it?",
+  { group: "The product", q: "Do I own it?",
     a: "Your customers, your contacts, and your content are yours and you can take them with you. The system itself works like any subscription. If you stop paying, access stops. That is what keeps this priced like software instead of priced like a custom build." },
-  { q: "Do you guarantee more leads?",
+  { group: "Working together", q: "Do you guarantee more leads?",
     a: "No, and be careful with anyone who does. We build and run the system. What it produces depends on your pricing, your capacity, and how you treat customers, and none of those are ours to promise." },
-  { q: "Will this replace the software I already use?",
+  { group: "The product", q: "Will this replace the software I already use?",
     a: "No. It sits alongside it and connects to it." },
-  { q: "Do you offer refunds?",
+  { group: "Money", q: "Do you offer refunds?",
     a: "No, and we would rather tell you that up front than bury it. What we do instead is keep working until the system matches what we scoped, at no additional cost. Everything runs month-to-month, so nothing locks you in while we get it right." },
-  { q: "What if I only need some of the six?",
+  { group: "Money", q: "What if I only need some of the six?",
     a: "That is normal, and the audit is where we work out which ones. Anything you already have comes off the quote. The one caveat worth knowing up front is that the Core Build is required, because it is what the other five run on." },
-  { q: "How long until it is running?",
+  { group: "Working together", q: "How long until it is running?",
     a: "The build is a 30 day phase. The technical work is usually finished well before that. The rest is getting your team using it." },
-  { q: "What if I cancel?",
+  { group: "Money", q: "What if I cancel?",
     a: "Cancel any time. If you paid monthly, you are done at the end of the month. If you prepaid for a year, you keep access through the end of that year. We do not issue refunds. {{WEBSITE_CANCELLATION_TERMS}}" },
-  { q: "What is Signal+?",
+  { group: "The product", q: "What is Signal+?",
     a: "The hands-on work layered on top once your system is running: ads, content, campaign management. We only offer it to customers already live on Signal, and it is priced separately when the time comes. Prices are published at /signal-plus." },
-  { q: "What do you need from me?",
+  { group: "Working together", q: "What do you need from me?",
     a: "An hour for the audit, a few hours during the build, and access to your accounts. After that, answering the people it sends you." },
 ] as const;
 ```
+
+Every entry has a `group`. The FAQ renders grouped under the three headings, two columns
+on desktop, rows about 56px tall, all closed on load.
 
 `{{WEBSITE_CANCELLATION_TERMS}}` is unresolved. Render the token literally rather than
 writing around it.

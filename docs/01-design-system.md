@@ -144,7 +144,13 @@ Radii in use: 9999px pills, 24px cards, 12px buttons and inputs, 16px small pane
 
 ## Imagery
 
-The site uses real photography. Warm, candid, small-business interiors with a person doing
+**The hero carries a screenshot of the actual Signal interface**, not a photograph of a
+person. The central claim of this business is one login instead of nine, and that claim is
+abstract until the reader sees the login. A page of prose about software with no picture of
+the software is asking to be believed rather than showing the thing. If no screenshot
+exists, stop and say so; do not substitute a stock photo.
+
+Elsewhere the site uses real photography. Warm, candid, small-business interiors with a person doing
 the actual work, never a person at a laptop pretending to be a marketer. Photos are used
 in the hero and as section punctuation, with rounded corners matching the card radius.
 
@@ -166,7 +172,13 @@ them and do not replace them with static content.
    and watches a monthly and annual figure move. See the constraint in Rule 2 below.
 3. **Before and after.** Two columns of paired lines, a red ✕ against a green ✓, headed
    "Now" and "After."
-4. **FAQ accordion.** Numbered 01 through 09, hairline dividers, a plus that rotates.
+4. **FAQ accordion.** Twelve entries, grouped under three headings (Money, The product,
+   Working together), two columns on desktop and one on mobile. Rows collapse to about
+   56px. All closed on load, hairline dividers, a plus that rotates. Numbers are padded to
+   two digits: 01 through 12, never 010.
+
+   Twelve entries is fine. Twelve entries at 108px per collapsed row, which is what the
+   live site does, is not.
 
 ## Motion
 
