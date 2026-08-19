@@ -108,29 +108,42 @@
 
     // Round three ordering. The offer is ONE section; the plan comes before it;
     // proof and the final CTA are adjacent; the FAQ is below the CTA.
-    const idx = (needle) => secs.findIndex(s => (s.textContent || "").includes(needle));
-    const plan   = idx("Three steps to success");
-    const offer  = idx("One login instead of nine");
-    const proof  = idx("what they'll tell you about the work");
-    const faq    = idx("Frequently asked questions");
-    const cta    = secs.findIndex((s, i) => i > proof && i !== faq &&
-                     els("a,button").some(b => s.contains(b) && /scorecard/i.test(b.innerText || "")));
+    //
+    // Anchored on section ids, NOT on copy. An earlier version keyed the offer section on
+    // the string "One login instead of nine"; when that headline was edited on 2026-08-19
+    // every ordering check below silently reported offer@-1 and failed for the wrong
+    // reason. Copy is allowed to change. Ids are structural and are what the deleted
+    // routes redirect to, so they cannot drift without someone noticing.
+    const byId  = (id) => secs.findIndex(s => s.id === id);
+    const plan  = byId("how-it-works");
+    const offer = byId("signal");
+    const faq   = byId("faq");
+    const cta   = byId("cta");
+    // Proof has no id. It is the section immediately before the final CTA, and asserting
+    // that it holds the testimonials is what makes "nothing sits between them" meaningful.
+    const proof = cta > 0 ? cta - 1 : -1;
+
+    check("Every keyed section has its id",
+          [plan, offer, faq, cta].every(i => i > -1),
+          `how-it-works@${plan} signal@${offer} faq@${faq} cta@${cta}`);
+
+    check("The section before the Final CTA is Proof",
+          proof > -1 && /what they'll tell you about the work/.test(secs[proof]?.textContent || ""),
+          proof > -1 ? (secs[proof].querySelector("h2")?.innerText || "").slice(0, 40) : "n/a");
 
     check("The plan comes before the offer", plan > -1 && offer > -1 && plan < offer,
           `plan@${plan} offer@${offer}`);
 
     check("Six and Pricing are inside the offer section",
-          offer > -1 && /Six systems\./.test(secs[offer].textContent) &&
-          /Two numbers\. Both published\./.test(secs[offer].textContent),
-          "they must be h3 sub-blocks of #signal, not their own sections");
+          offer > -1 && secs[offer].querySelector("#the-six") !== null &&
+          secs[offer].querySelector("#pricing") !== null,
+          "#the-six and #pricing must be ids on sub-blocks of #signal, not their own sections");
 
     // Blocks B and C open with an h3. Three h2s means the three old sections came back.
     const offerH2 = offer > -1 ? secs[offer].querySelectorAll("h2").length : -1;
     check("Offer section has one h2, with B and C as h3", offerH2 === 1,
           `${offerH2} h2 elements in #signal`);
 
-    check("Nothing sits between Proof and the Final CTA",
-          proof > -1 && cta === proof + 1, `proof@${proof} cta@${cta}`);
 
     check("FAQ renders below the Final CTA", faq > -1 && cta > -1 && faq > cta,
           `faq@${faq} cta@${cta}`);
