@@ -115,3 +115,21 @@ asked to.
   of the hero subhead and it exists once on the page. It closes the loop Stakes opens with
   "You're the system": the last line says you stop being it. Any replacement must clear Rule 2
   the same way — it describes the owner's experience, not a result the business will get.
+
+## The served HTML is not the rendered page
+
+This site prerenders HTML snapshots for non-browser clients and serves the live SPA to
+browsers. On 2026-08-19 the snapshots were stale by an entire rebuild: `curl` returned the
+pre-round-one site, with `Calibrate`, `Signal+` as a public tier, "Measurable ROI", "leads,
+calls, and revenue", and "Book a free discovery call" — nine rule-violating strings in the
+document Google and every link preview reads.
+
+- **`spec-check.js` cannot see this.** It runs after hydration. Green there proves nothing
+  about what the server sent. Run `checks/served-html-check.sh` too, after every deploy.
+- **A 200 from `curl` does not mean a route exists.** The SPA answers every path with
+  `index.html`. Check routes by navigating in a browser, or by reading the status code of a
+  real redirect — never by the status code alone.
+- Never fix a stale snapshot by hand-writing meta tags into `index.html`, and never by
+  disabling prerendering. The first papers over one symptom; the second leaves crawlers an
+  empty `<div id="root">`. Fix the generator so it runs on every deploy. See
+  `prompts/08-prerender.md`.

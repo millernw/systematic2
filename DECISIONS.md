@@ -179,3 +179,36 @@ or a treatment change, and the homepage renders no unresolved token afterwards.
 `spec-check.js` asserts both sentences appear exactly once and in their new homes. The failure
 mode being guarded is a tool that copies rather than moves, which leaves the page saying the
 same thing twice — the exact problem all three rounds have been undoing.
+
+## Why there is a second check that reads what curl gets
+
+Found 2026-08-19, while looking for the site repo: `gosystematic.com` serves a prerendered
+HTML snapshot to non-browser clients and the live SPA to browsers. Normal technique. The
+snapshots were stale by an entire rebuild — the document served for `/` was a complete copy
+of the pre-round-one site, carrying `Calibrate`, `Signal+` as a public tier, "Measurable
+ROI", "leads, calls, and revenue", "Book a free discovery call", and no price anywhere.
+Nine rule-violating strings in the version Google and every link preview reads.
+
+Three rounds of review missed it because it is invisible from a browser, and `spec-check.js`
+missed it because it runs after hydration. Every check in it was green. That is not a bug in
+the check; it is the boundary of what a browser-side check can observe, and the fix is a
+second check on the other side of the boundary rather than a smarter version of the first.
+
+The same blind spot produced a wrong finding in the round-three audit. `/signal`, `/pricing`
+and `/calibration` were reported as still live because `curl` returned 200 for all three. A
+client-side SPA answers every path with `index.html` and a 200, so the status code carried
+no information. Navigating in a browser showed all three already redirect. What was actually
+broken was narrower: `/calibration` pointed at `/` instead of `/build`, and none of the three
+was a real 301.
+
+Both lessons are the same lesson. **A single observation point is a single point of failure.**
+The rule now recorded in `AGENTS.md` is that a 200 from curl proves nothing about a route on
+this site, and that green from `spec-check.js` proves nothing about the served document.
+
+## Why the prerender fix comes before the restructure
+
+It fixes a pipeline, not a page. If the generator still runs once and never again, Prompt C
+ships the restructured homepage to browsers while the pre-round-one page keeps serving to
+crawlers — and the failure stays invisible, because the only check anybody runs is the one
+that cannot see it. Fixing the pipeline while there is a single page to verify against is
+cheaper than discovering it three prompts later.

@@ -9,6 +9,10 @@ rather than your recollection of one.
 
 ## Before you start
 
+0. **Run `08-prerender.md` first.** It fixes the prerender pipeline, and it is not optional
+   sequencing. The site serves a stale HTML snapshot of the pre-round-one build to every
+   crawler and link preview. If the pipeline still only runs once, Prompt C ships a
+   restructured homepage to browsers while the old page keeps serving to Google.
 1. **Sync the docs into the site repo.** This repo holds the spec; the site lives elsewhere.
    Copy `docs/`, `AGENTS.md` and `checks/spec-check.js` across before prompt A, or the tool
    will read round-two rules and rebuild what you are trying to remove.
@@ -21,13 +25,24 @@ rather than your recollection of one.
    `/components` and `/build`, which carry `{{WEBSITE_CANCELLATION_TERMS}}` and
    `{{TEXT_ALLOWANCE_POLICY}}`. Those two are older than this round and stay open.
 
-## Run the check after every prompt
+## Run BOTH checks after every prompt
 
-Paste `checks/spec-check.js` into the browser console on the page you just changed. It now
+**`checks/spec-check.js`** goes in the browser console on the page you just changed. It
 enforces seven sections, 1,200 words, 7,500px, the new ordering, and that the five moved
-things are on `/build` and not on the homepage.
+things are on `/build` and not on the homepage. Run it at 1280px wide and again at 375px;
+the mobile block only fires under 768px.
 
-Run it at 1280px wide and again at 375px. The mobile block only fires under 768px.
+**`checks/served-html-check.sh`** runs from a terminal and reads what `curl` gets, which is
+not what your browser gets:
+
+```bash
+bash checks/served-html-check.sh
+```
+
+You need both, and neither substitutes for the other. `spec-check.js` runs after hydration
+and is structurally blind to the served document; on 2026-08-19 every one of its checks was
+green while the HTML this site actually sends contained nine rule-violating strings from the
+pre-round-one build.
 
 ---
 
@@ -82,38 +97,68 @@ a treatment change.
 
 ## Prompt A, routing and the header
 
-Do this first and alone. Round two specified it and never shipped it, and everything else
-assumes it.
+Run this after `08-prerender.md`, and before Prompt B.
+
+**The premise of this prompt changed on 2026-08-19.** An earlier version said `/signal`,
+`/pricing` and `/calibration` were still live, on the evidence that `curl` returned 200 for
+all three. That was wrong. This is a client-side SPA, so the server answers **every** path
+with `index.html` and a 200; the status code says nothing about whether a route exists.
+Checked properly, by navigating in a browser, all three already redirect to the homepage.
+
+What is actually still wrong is narrower, and neither part is visible from a browser:
+
+1. **`/calibration` lands on `/`, not on `/build`.** Wrong destination.
+2. **All three are client-side redirects, not 301s.** The spec asks for 301s and the
+   difference is real: a client-side redirect passes no link equity, and a crawler sees a
+   200 with a page of content rather than a permanent move. `/signal` additionally still has
+   a prerendered snapshot of its old self, so to anything that does not run JavaScript it
+   looks like a live page.
 
 ```
-Read docs/00-START-HERE.md and the routing section of docs/02-architecture.md before you
-touch anything.
+Read the routing section of docs/02-architecture.md before you touch anything.
 
-Three routes are still live that were supposed to be gone. Verified on gosystematic.com
-2026-08-19: /signal, /pricing and /calibration all return 200. /signal serves an entirely
-separate old page titled "Marketing should be a system, not a gamble."
+Three legacy routes redirect client-side today. They need to be real server-side 301s, and
+one of them points at the wrong place. Do not remove the client-side redirects until the
+server-side ones are confirmed working; for a moment both will exist and that is fine.
 
-1. Delete the /signal page and 301 it to /#signal.
-2. Delete the /pricing page and 301 it to /#pricing.
-3. 301 /calibration to /build.
-4. Confirm the anchor ids #signal and #pricing exist on the homepage and that the redirects
-   land on them. Do not create new sections to receive them.
+1. /signal      301 to /#signal
+2. /pricing     301 to /#pricing
+3. /calibration 301 to /build     <- currently lands on /, which is wrong
 
-Then the header. It currently renders two buttons, "Get my free Six-Point Scorecard" and
-"Audit". Delete the "Audit" button. The Scorecard is the only call to action on this site
-and a second button in the header competes with it.
+These must be issued by the server or the edge, not by the React router. Where they are
+configured depends on the host: a _redirects file, a redirects array in the build config, a
+Cloudflare rule, or a platform setting. Find the mechanism this site actually uses and tell
+me which one before you change it.
 
-Do not touch homepage sections in this prompt. Report the status code and Location header
-for each of the three routes when you are done.
+Confirm the anchor ids #signal and #pricing exist on the homepage and that the redirects
+land on them. Do NOT create sections to receive them: after round three, #the-six and
+#pricing are ids on sub-blocks INSIDE the #signal section, and #signal is the section
+itself. An anchor does not care what element carries it.
+
+Any prerendered snapshot for /signal, /pricing or /calibration must be deleted. A 301 with
+a stale snapshot behind it still serves the old page to some clients.
+
+Then the header. It renders two buttons today, "Get my free Six-Point Scorecard" and
+"Audit". Delete the "Audit" button. The Scorecard is the only lead capture on this site and
+a second header button competes with it. Also remove "The Six" from the nav: it is now a
+sub-block of Signal and two nav items pointing into one section is noise. Nav becomes
+Signal, Pricing, About.
+
+Do not touch homepage sections in this prompt.
+
+Report: the redirect mechanism you used, and the status code plus Location header for each
+of the three routes, taken with curl and not from a browser.
 ```
 
-**Verify yourself, do not take its word:**
+**Verify it yourself. A browser will lie to you here** — it follows client-side redirects
+happily and shows you the right page whether or not a 301 exists.
 
 ```bash
 for u in signal pricing calibration; do curl -s -o /dev/null -w "/$u %{http_code} -> %{redirect_url}\n" "https://gosystematic.com/$u"; done
 ```
 
----
+Three `301`s, with `/calibration` pointing at `/build`. A `200` means the SPA fallback is
+still answering and nothing was fixed at the server.
 
 ## Prompt B, /build absorbs what the homepage is about to drop
 
@@ -246,6 +291,13 @@ sections before you tell me you are done.
 Run checks/spec-check.js on the homepage at 1280px wide, then again at 375px wide, then on
 /build. Paste me all three tables in full, including the passes.
 
+Then run checks/served-html-check.sh from a terminal and paste its whole output. This reads
+what curl gets rather than what a browser gets, and the two have disagreed on this site
+before. It must PASS everything, including the three redirect lines by now.
+
+If the served homepage does not contain the new hero headline, the prerender pipeline is
+still only running once and Prompt 0 did not hold. Say so rather than working around it.
+
 Then report these five numbers for the homepage at 1280px:
   - document.body.scrollHeight
   - word count of document.querySelector('main').innerText
@@ -272,7 +324,23 @@ think it failed, and wait.
 | Largest CTA gap | 3,825px | under 1,900px |
 | Plan position | 66% scroll | ~25% scroll |
 | Offer share of page | 45% | under 30% |
-| Live legacy routes | 3 | 0 |
+| Legacy routes as real 301s | 0 of 3 | 3 of 3 |
+| Rule-violating strings in served HTML | 9 | 0 |
+| Routes with a stale or missing snapshot | 8 of 8 | 0 of 8 |
+
+## The order, end to end
+
+| | Prompt | Fixes |
+|---|---|---|
+| 0 | `08-prerender.md` | The pipeline. Crawlers see the current site |
+| A | Prompt A below | Three legacy routes become real 301s; header drops a button |
+| B | Prompt B | `/build` absorbs the five things the homepage is about to drop |
+| C | Prompt C | The homepage restructure itself |
+| D | Prompt D | Verify, report only |
+
+0 before A because A deletes snapshots, and deleting snapshots from a generator that never
+re-runs leaves those routes with nothing. A before B and C because both assume the
+redirects resolve.
 
 ## After it ships
 

@@ -15,6 +15,7 @@ Read it fully, then read the file the current task points to.
 | `06-scorecard-flow.md` | The Scorecard capture flow, the only lead capture on the site | Before any work under `/diagnostic` |
 | `../prompts/05-build-prompts.md` | The round-two prompt sequence | Human uses this, not you |
 | `../prompts/07-restructure.md` | The round-three restructure prompts | Human uses this, not you |
+| `../prompts/08-prerender.md` | The prerender fix, which runs before all of them | Human uses this, not you |
 
 ## What this company is
 
@@ -68,6 +69,13 @@ a person and is step one of the build.
 `checks/spec-check.js` at the repo root turns these rules into pass/fail. Run it in the
 browser console on any page you changed and fix the failures before telling me you are done.
 Reporting a step complete without running it is not acceptable.
+
+**It is not sufficient on its own.** It runs after hydration, so it reads the page a browser
+renders and never the document the server sends. Those two disagreed on this site: on
+2026-08-19 every check was green while the served HTML was a complete copy of the
+pre-round-one build, carrying the retired name Calibrate, Signal+ as a public tier, claims
+about ROI and revenue, and no price anywhere. `checks/served-html-check.sh` reads what curl
+gets. Run both.
 
 Rationale for any rule that looks arbitrary lives in `DECISIONS.md`. You do not need to read
 that file to do the work.
