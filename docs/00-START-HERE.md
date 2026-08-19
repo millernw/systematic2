@@ -49,9 +49,11 @@ say funnel, stack, omnichannel, or operating system.
 
 The one job of the homepage: get a skeptical owner to run the free Scorecard.
 
-Two names, never interchanged. The **Scorecard** is instant and automated, scored from
-public data, and is what every button on the site points at. The **Audit** takes about an
-hour with a person and is step one of the build.
+Two names, never interchanged. The **Scorecard** takes about a minute, is what every button
+on the site points at, and is the only lead capture on the site. It is a hybrid: four short
+questions plus what is publicly visible, because only two of the six systems can honestly be
+scored from the outside. See `06-scorecard-flow.md`. The **Audit** takes about an hour with
+a person and is step one of the build.
 
 ## Check your work before you report it
 
