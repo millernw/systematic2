@@ -156,3 +156,26 @@ subhead's "Then we run it." became load-bearing and can no longer be cut. Softwa
 operates is Dead End 1 in the section immediately after. That dependency is recorded in
 `AGENTS.md` and in the Hero spec, because it is exactly the kind of thing a later session
 tidies away.
+
+## The other two round-three sentences, settled 2026-08-19
+
+Both approved as proposed, and both are relocations rather than new writing.
+
+**"You stop being the part that breaks."** was the last sentence of the hero subhead, where
+it competed with the headline for the same job. At the bottom of the page it is the statement
+of success the frame asks for, and it closes the loop the page opens: Stakes says "You're the
+system", and the last line says you stop being it. It clears Rule 2 because it describes the
+owner's experience and not a result the business will get, which is the bar any replacement
+has to meet.
+
+**"Someone builds the system for your business, then it runs."** was inside the third-option
+card that round three deletes. It is the only sentence in that card doing work the hero does
+not already do, and as the Stakes closing line it hands straight into How it works, which is
+now the next section and which answers "how".
+
+Net for the round: one new sentence, the hero headline. Everything else is a move, a deletion
+or a treatment change, and the homepage renders no unresolved token afterwards.
+
+`spec-check.js` asserts both sentences appear exactly once and in their new homes. The failure
+mode being guarded is a tool that copies rather than moves, which leaves the page saying the
+same thing twice — the exact problem all three rounds have been undoing.

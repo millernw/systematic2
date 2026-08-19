@@ -104,21 +104,27 @@ rebuilt to escape: saying one thing in several places.
 | Three "how we price" cards | Collapsed into one `--steel` line |
 | The credential strip | Moved out of the hero, into How it works |
 
-## Copy this restructure needs, which does not exist yet
+## The three copy decisions, all settled 2026-08-19
 
-Rule 1 holds. Three places need words that are not in `src/content/`, and each is resolved
-by moving a sentence that already exists rather than writing a new one. **All three need
-Nathan's approval before they are rendered.** Until approved, render the token literally.
+Rule 1 held. Three places in this restructure needed words the page did not already have in
+the right position. **All three are approved and none is a token any more.** Two are pure
+relocations of sentences already in `src/content/`; one is the single new sentence in the
+round.
 
-| Token | Resolved by | Status |
+| Was | Resolved by | Kind |
 |---|---|---|
-| `{{HERO_H1}}` | A new sentence, the only one in round three | **Approved 2026-08-19.** The sentence is in `../prompts/07-restructure.md`, which is where it enters `src/content/`. It is not repeated here, because this file holds no sentences |
-| `{{FINAL_CTA_HEADLINE}}` | The sentence "You stop being the part that breaks.", currently the last sentence of the hero subhead | Needs approval |
-| `{{STAKES_CLOSING_LINE}}` | The sentence "Someone builds the system for your business, then it runs.", currently inside the deleted third-option card | Needs approval |
+| `{{HERO_H1}}` | A new sentence, carried verbatim in `../prompts/07-restructure.md`, which is where it enters `src/content/`. Not repeated here, because this file holds no sentences | **New.** The only one |
+| `{{FINAL_CTA_HEADLINE}}` | "You stop being the part that breaks.", relocated from the last sentence of the hero subhead | Move |
+| `{{STAKES_CLOSING_LINE}}` | "Someone builds the system for your business, then it runs.", relocated from inside the deleted third-option card | Move |
 
-Do not write a plausible sentence in either remaining place. Do not assemble one from nearby
-copy. Render the token. Once the approved hero headline is in `src/content/`, that file is
-its source of truth and the prompt is just the delivery mechanism.
+Both relocated sentences already exist in `src/content/`. Neither is rewritten in transit and
+neither is duplicated: each leaves its old position in the same change that gives it the new
+one.
+
+**The homepage renders no unresolved token after round three.** `{{WEBSITE_CANCELLATION_TERMS}}`
+and `{{TEXT_ALLOWANCE_POLICY}}` are still open, but neither is on this page: they live on
+`/components` and `/build`. `spec-check.js` fails on unresolved tokens, and on the homepage
+that check must now pass.
 
 ## 1. Hero
 
@@ -179,7 +185,13 @@ Absorbs the whole of the old "You are the marketing" and the whole of the old "T
 - The two dead ends as **two plain lines**, not cards. Keep the "Bought the software" line
   and the "Hired someone" line. Delete the four pills, the two card containers, and the two
   follow-on paragraphs beginning "And it is still your job" and "And you are paying monthly".
-- Closing `--steel` line, `{{STAKES_CLOSING_LINE}}`.
+- Closing `--steel` line: **"Someone builds the system for your business, then it runs."**,
+  relocated from the third-option card this section deletes. Approved 2026-08-19. It is the
+  handoff into How it works, which is the next section and which answers "how".
+
+  It survives its card because it is the only sentence in that card doing work the hero does
+  not already do. The rest of the card, including its two pills and its "Built for you, then
+  it runs 24/7" line, is deleted.
 
 **Deleted outright, and the copy does not go anywhere:** the old "You're not bad at marketing.
 You are the marketing, and you have a business to run." headline; the old "The gap isn't
@@ -283,10 +295,17 @@ render it twice.
 
 Brand gradient, left aligned, no form. ~500px.
 
-- Headline, `{{FINAL_CTA_HEADLINE}}`. This is the explicit statement of success: what the
-  owner's week looks like once this works. **Rule 2 applies at full force here.** It
-  describes the owner's experience, never a result the business will get. No lead counts, no
-  revenue, no percentages, no "more customers".
+- Headline: **"You stop being the part that breaks."**, relocated from the last sentence of
+  the hero subhead. Approved 2026-08-19.
+
+  This is the explicit statement of success: what the owner's week looks like once this
+  works. **Rule 2 applies at full force here**, and this sentence passes because it describes
+  the owner's experience rather than a result the business will get. If it is ever replaced,
+  the replacement must clear the same bar: no lead counts, no revenue, no percentages, no
+  "more customers".
+
+  It also closes the loop the page opens. Stakes says "You're the system"; the last line on
+  the page says you stop being it.
 - **Delete the current headline**, "Find out which of six is costing you the most." It
   restates the problem at the exact moment the page should be describing the resolution.
 - One amber button. One line beneath. Both unchanged.

@@ -15,11 +15,11 @@ rather than your recollection of one.
 2. **Re-paste `00-paste-this-first.md`** — but note it still describes ten sections in its
    step-2 questions. Answer "seven" when the tool parrots ten back at you, and point it at
    `docs/03-content.md`, which is authoritative for the homepage.
-3. **Decide the two open copy gaps**, below. `{{HERO_H1}}` is settled and its sentence is in
-   this file. The tool will render `{{FINAL_CTA_HEADLINE}}` and `{{STAKES_CLOSING_LINE}}`
-   literally until you approve sentences for them, and `spec-check.js` will fail on
-   unresolved tokens until you do. That failure is correct. Do not let the tool write its
-   way out of it.
+3. **Nothing left to decide.** All three copy decisions were settled on 2026-08-19 and the
+   sentences are in the next section. The homepage should render no unresolved token when
+   this is done, so `spec-check.js`'s token check must PASS on `/`. It will still fail on
+   `/components` and `/build`, which carry `{{WEBSITE_CANCELLATION_TERMS}}` and
+   `{{TEXT_ALLOWANCE_POLICY}}`. Those two are older than this round and stay open.
 
 ## Run the check after every prompt
 
@@ -31,10 +31,9 @@ Run it at 1280px wide and again at 375px. The mobile block only fires under 768p
 
 ---
 
-## The copy gaps
+## The three copy decisions, all settled
 
-One is settled. The other two are resolved by moving a sentence that already exists on the
-site, and both still need your yes.
+One new sentence, two relocations. Nothing here is open.
 
 **`{{HERO_H1}}` — the one-liner. APPROVED 2026-08-19. The sentence is:**
 
@@ -56,18 +55,28 @@ It passes Rule 2: "never stops" describes how the system behaves, not a result t
 will get. The site already speaks this way — "Runs continuously" is in the before/after
 module and "Follow Up Automatically" is system 06.
 
-**`{{FINAL_CTA_HEADLINE}}` — the statement of success.** Proposed: *"You stop being the part
-that breaks."* It is currently the last sentence of the hero subhead, where it competes with
-the headline. At the bottom of the page it is exactly what the frame asks for: what the
-owner's week looks like once this works. It passes Rule 2 because it describes their
+**`{{FINAL_CTA_HEADLINE}}` — the statement of success. APPROVED 2026-08-19:**
+
+> ### You stop being the part that breaks.
+
+A **move**, not a new sentence. It is currently the last sentence of the hero subhead, where
+it competes with the headline. At the bottom of the page it is what the frame asks for: what
+the owner's week looks like once this works. It passes Rule 2 because it describes their
 experience and not a business result.
 
-**`{{STAKES_CLOSING_LINE}}` — the handoff into the plan.** Proposed: *"Someone builds the
-system for your business, then it runs."* It is currently inside the third-option card, which
-this restructure deletes.
+It also closes the loop the page opens. Stakes says "You're the system"; the last line on the
+page says you stop being it.
 
-One of the three is now settled and the other two are still yours. Approve them as proposed
-and the restructure adds exactly one new sentence to the site.
+**`{{STAKES_CLOSING_LINE}}` — the handoff into the plan. APPROVED 2026-08-19:**
+
+> Someone builds the system for your business, then it runs.
+
+A **move**, not a new sentence. It is currently inside the third-option card, which this
+restructure deletes. It is the only sentence in that card doing work the hero does not
+already do, and it hands straight into How it works, which is now the next section.
+
+**Net for the whole restructure: one new sentence.** Everything else is a move, a deletion or
+a treatment change.
 
 ---
 
@@ -159,11 +168,9 @@ This is almost entirely a MOVE, not a rewrite. There is exactly ONE new sentence
 whole restructure and it is the hero headline, given verbatim in step 1 below. Add it to
 src/content/ like any other copy; do not hardcode it in a component.
 
-Two other places need a sentence that is not approved yet, and they are tokens: render
-{{FINAL_CTA_HEADLINE}} and {{STAKES_CLOSING_LINE}} literally. Do not write a sentence for
-either, do not assemble one from nearby copy, and do not remove the element so the token has
-nowhere to render. spec-check.js will fail on unresolved tokens and that failure is expected
-here.
+There are NO tokens to render on the homepage. All three round-three copy decisions are
+settled and every sentence you need is written out below, verbatim. When you are done, the
+homepage must render no {{TOKEN}} at all and spec-check.js's token check must pass on /.
 
 Work section by section, in this order, and show me the diff for each before moving on:
 
@@ -190,7 +197,14 @@ Work section by section, in this order, and show me the diff for each before mov
    options". Its headline is the sentence moved down from the hero: "You're the system.
    That's why your marketing stops when you get busy." Keep two body paragraphs and the two
    dead-end lines. Delete the four pills, both card containers, the two follow-on
-   paragraphs, and the entire third-option card. Closing line is {{STAKES_CLOSING_LINE}}.
+   paragraphs, and the entire third-option card INCLUDING its two pills and its "Built for
+   you, then it runs 24/7" line.
+
+   Rescue exactly one sentence out of that card before you delete it, and make it this
+   section's closing steel line:
+
+       Someone builds the system for your business, then it runs.
+
    Zero cards, zero pills except the eyebrow, no CTA. It must not be taller than the hero.
 
 3. HOW IT WORKS moves from position seven to position three, unchanged, and gains the
@@ -206,8 +220,13 @@ Work section by section, in this order, and show me the diff for each before mov
 
 5. PROOF is unchanged and now sits with nothing between it and the Final CTA.
 
-6. FINAL CTA headline becomes {{FINAL_CTA_HEADLINE}}. Delete "Find out which of six is
-   costing you the most."
+6. FINAL CTA. Delete the headline "Find out which of six is costing you the most." The new
+   headline is the sentence you removed from the end of the hero subhead in step 1:
+
+       You stop being the part that breaks.
+
+   It moves, it is not copied: after this it exists once on the page, here. The button and
+   the line beneath it are unchanged.
 
 7. FAQ moves BELOW the Final CTA, otherwise unchanged.
 

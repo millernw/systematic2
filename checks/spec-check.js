@@ -154,6 +154,25 @@
           secs[1] && secs[1].querySelectorAll('[class*="rounded-3xl"],[class*="rounded-2xl"]').length === 0,
           secs[1] ? `${secs[1].querySelectorAll('[class*="rounded-3xl"],[class*="rounded-2xl"]').length} cards` : "n/a");
 
+    // Round three's two relocated sentences MOVED. Each must exist once, in its new home,
+    // and not also in the place it came from.
+    check("Success statement is in the Final CTA and nowhere else",
+          count(/You stop being the part that breaks/g) === 1 && cta > -1 &&
+          /You stop being the part that breaks/.test(secs[cta].textContent),
+          `${count(/You stop being the part that breaks/g)} occurrences, cta@${cta}`);
+
+    check("Stakes closing line is in Stakes and nowhere else",
+          count(/Someone builds the system for your business/g) === 1 && secs[1] &&
+          /Someone builds the system for your business/.test(secs[1].textContent),
+          `${count(/Someone builds the system for your business/g)} occurrences`);
+
+    check("Hero subhead keeps 'Then we run it'",
+          /Then we run it/.test(secs[0]?.textContent || ""),
+          "without it the hero never says a person runs this. See AGENTS.md");
+
+    check("Old final-CTA headline is gone",
+          !/Find out which of six is costing you the most/i.test(t));
+
     check("Credential strip renders exactly once, in How it works",
           count(/15\+ years/g) === 1 && plan > -1 && /15\+ years/.test(secs[plan].textContent));
   }

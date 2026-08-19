@@ -69,10 +69,9 @@ judgment.
   leave no gap. `/industries/[slug]` 404s for every seed.
 - `{{WEBSITE_CANCELLATION_TERMS}}` and `{{TEXT_ALLOWANCE_POLICY}}` are unresolved
   decisions. Render both tokens literally. Do not write a plausible sentence in either
-  place. Round three added three more. `{{HERO_H1}}` is approved and its sentence is in
-  `prompts/07-restructure.md`. `{{FINAL_CTA_HEADLINE}}` and `{{STAKES_CLOSING_LINE}}` are
-  still open: render them literally, same rule, and do not assemble one out of nearby copy
-  either.
+  place. **Neither is on the homepage**; they live on `/components` and `/build`. Round three
+  added three tokens and closed all three on 2026-08-19, so the homepage renders no
+  unresolved token at all and `spec-check.js`'s token check must pass on `/`.
 - Copy lives in `src/content/` only. A sentence inside a component is a second source of
   truth and will drift. `checks/copy-source-check.sh` fails on it.
 - Never render internal hours, cost, margin, or effective hourly rate. They are not in this
@@ -112,3 +111,7 @@ asked to.
 - **The hero subhead keeps "Then we run it."** The headline says what the system does and not
   who operates it, so that clause is the only place the hero says a person runs this. Software
   the owner operates is Dead End 1 in the very next section.
+- **The final CTA headline is "You stop being the part that breaks."** It moved off the end
+  of the hero subhead and it exists once on the page. It closes the loop Stakes opens with
+  "You're the system": the last line says you stop being it. Any replacement must clear Rule 2
+  the same way — it describes the owner's experience, not a result the business will get.

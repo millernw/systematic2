@@ -232,14 +232,10 @@ next to "One login instead of nine", which is the sentence it actually supports.
   at two" line is not in the current offer. Do not write it back in.
 - The Proof section has no real client yet. Placeholders only.
 
-**Round-three copy gaps, added 2026-08-19.** Two are still open and one is settled.
+**The round-three copy gaps are all closed, 2026-08-19.** `{{HERO_H1}}`,
+`{{FINAL_CTA_HEADLINE}}` and `{{STAKES_CLOSING_LINE}}` are approved and are no longer tokens.
+One is a new sentence and two are relocations; the table is in `03-content.md` and the
+sentences are in `../prompts/07-restructure.md`, which is where they enter `src/content/`.
 
-`{{HERO_H1}}` is **approved**. It is the one genuinely new sentence in round three, and it
-is carried verbatim in `../prompts/07-restructure.md`, which is where it enters
-`src/content/`. It is not repeated in `03-content.md`, because that file holds no sentences.
-
-`{{FINAL_CTA_HEADLINE}}` and `{{STAKES_CLOSING_LINE}}` still need Nathan's yes. Render both
-literally until then. Each is resolved by moving a sentence that already exists, not by
-writing one; the proposed source for each is in the table under "Copy this restructure
-needs" in `03-content.md`. Do not assemble a headline out of nearby copy and do not write a
-plausible one.
+The two entries above this line are older than round three and stay open. **Neither is on the
+homepage**, so after round three the homepage must render no unresolved token at all.
