@@ -13,7 +13,8 @@ Read it fully, then read the file the current task points to.
 | `03-content.md` | Structure, order, placement, treatment. No copy. | Before moving or building any section |
 | `04-data-files.md` | Literal contents of the typed data files | When creating or editing data |
 | `06-scorecard-flow.md` | The Scorecard capture flow, the only lead capture on the site | Before any work under `/diagnostic` |
-| `../prompts/05-build-prompts.md` | The prompt sequence and correction prompts | Human uses this, not you |
+| `../prompts/05-build-prompts.md` | The round-two prompt sequence | Human uses this, not you |
+| `../prompts/07-restructure.md` | The round-three restructure prompts | Human uses this, not you |
 
 ## What this company is
 
@@ -32,12 +33,19 @@ a month as Components, which is the way in for a business that is not ready for 
 thing. Same names, two depths. That is deliberate and it is why the ladder needs no
 explaining.
 
-**The homepage carries the whole offer, at decision depth.** A reader must be able to learn
-what Signal is, what it includes, and both prices without leaving the page. That is the
-decision. It is not the same as carrying every detail: reference material a buyer reads
-*after* deciding to care, like the twenty-item inclusion list or the add-on catalogue,
-belongs on `/build`. The test is whether a first-time visitor could decide to contact us
-without clicking anything. Not whether every fact is present.
+**The one job of the homepage is to get a stranger to the button.** Not to let them decide
+without clicking anything. That was the round-two rule and it is what produced a 10,748px
+page: it made "is every fact present?" the test, and every fact is a reason to keep
+scrolling instead of acting.
+
+The homepage carries **both prices, what Signal is, and what the six systems are**, because
+published pricing is the differentiator and the six are the product. It does not carry the
+build price table, the eight-item guarantee, the add-on catalogue, the inclusion list, or
+each system's full description. `/build` is the decision-depth page and it is one click away
+for the reader who wants every line before talking to anyone.
+
+The test is no longer whether a first-time visitor could decide without clicking. It is
+whether they reach a button before they lose interest.
 
 The market argument: small businesses have two options today, buying software they never
 learn to use, or hiring an agency they cannot afford where the affordable ones do not
@@ -104,7 +112,21 @@ reference for anything visual.
 **Round two, 2026-08-18.** A fresh-eyes review found the page was written to be understood
 rather than acted on: 2,325 words, three consecutive pain sections before the product was
 named, a pricing section that was 34% of the page, no call to action across roughly 8,000px
-of scroll, and no picture of the product anywhere. The changes below now include that pass.
+of scroll, and no picture of the product anywhere.
+
+**Round three, 2026-08-19.** Round two half-landed. Measured live: the page is 10,748px and
+**1,771 words, up from the 1,666 baseline** against a ~1,200 target; the three pain sections
+are still all three there, running 21% of the page before Signal is named; the plan sits at
+**66% scroll**; the offer runs 45% of the page; there is still a **3,825px stretch with no
+button**; and the final CTA restates the problem instead of describing success. Round two
+also never shipped its own item 0: `/signal`, `/pricing` and `/calibration` all still return
+200.
+
+Round three restructures the page against a seven-beat frame — hero, stakes, plan,
+credibility, offer, proof, CTA-plus-success — and the section map for it is in
+`03-content.md`. It cuts ten sections to seven and about 10,750px to about 6,700px. Where
+this document and `03-content.md` disagree about the homepage, `03-content.md` wins; it was
+rewritten on 2026-08-19 and this file was patched to match.
 
 Things change, and only these:
 
@@ -139,49 +161,63 @@ far.
 
 ## Build order
 
-1. Foundation: tokens, Plus Jakarta Sans, Pill component, shared section component, config,
-   data files, header with anchor nav, footer, the industry route
-2. Hero, including the credential strip
-3. You are the marketing. The Math calculator is NOT in this section any more
-4. Two options
-5. Signal, with the before/after module inside it
-6. The Six
-7. Pricing, three blocks. No inclusion list, no Components block
-8. How it works
-9. Proof, Industries, FAQ, Final CTA
-10. `/diagnostic`, the conversion page
-11. `/build`, then `/components` and `/signal-plus`
+1. Routing. Delete `/signal` and `/pricing`, 301 them to the homepage anchors, 301
+   `/calibration` to `/build`, and drop the second header button. Round two specified this
+   and never shipped it. Nothing else matters if this does not happen.
+2. `/build` absorbs everything the homepage is about to drop, **before** the homepage drops
+   it. Moving copy out of a page that has nowhere to put it is how copy gets lost.
+3. Hero and Stakes. The hero loses the credential strip and its headline; Stakes absorbs two
+   whole sections.
+4. How it works moves to position three and gains the credential strip.
+5. Signal becomes one section with three sub-blocks and the deletions inside each.
+6. Proof, Final CTA, FAQ below the CTA.
+7. `/diagnostic`, the conversion page.
+8. `/components` and `/signal-plus`.
 
-Homepage section order, top to bottom: **Hero, You are the marketing, Two options, Signal,
-The Six, Pricing, How it works, Proof, Industries, FAQ, Final CTA.** That is ten rendered
-sections, since Industries renders nothing.
+Homepage section order, top to bottom: **Hero, Stakes, How it works, Signal, Proof, Final
+CTA, FAQ, Industries.** That is seven rendered sections, since Industries renders nothing.
 
-Three ordering rules, all load-bearing:
+Four ordering rules, all load-bearing:
 
-- **Signal comes before The Six.** The reader has to know this is one product before they
-  see it has six parts, or the six read as a menu to shop from.
-- **Pricing comes immediately after The Six**, with nothing between them. The reader has
-  just seen exactly what gets built and the next question is what it costs.
-- **How it works comes after Pricing.** By then the only open question is how to start, and
-  the answer hands straight off to the CTA.
+- **The plan comes before the offer.** A reader decides whether working with you sounds
+  survivable before they evaluate what you sell. It sat at 66% scroll and it was the
+  cheapest thing on the page to move.
+- **Exactly one stakes section.** The pain argument ran three times before the product was
+  named. Once now.
+- **Signal, The Six and Pricing are one section**, three sub-blocks, one eyebrow pill at the
+  top and none between them. Three sections making one argument is what made the offer read
+  as 45% of the page.
+- **Nothing sits between Proof and the Final CTA.** The FAQ used to wedge 1,300px in there
+  and it now renders below the CTA, off the conversion path.
 
 ## What was cut, and where it went
 
-Four sections were removed and none of their copy was lost. Each had a second section
-making the same argument. Full reasoning is at the top of `03-content.md`.
+No copy was lost in either round. Each removed thing had a second place making the same
+argument, or a page that carries it better. Full reasoning is at the top of `03-content.md`
+and in `DECISIONS.md`.
 
-| Was its own section | Now lives in |
-|---|---|
-| The Math | `/diagnostic` |
-| Same business. Different week. | Inside "Signal" |
-| Guarantee | Inside Pricing, block 3, as body copy not cards |
-| Not ready for Signal | `/components` only |
+| Was its own section | Now lives in | Round |
+|---|---|---|
+| The Math | `/diagnostic` | Two |
+| Not ready for Signal | `/components` only | Two |
+| You are the marketing | Inside Stakes | Three |
+| Two options | Inside Stakes | Three |
+| The Six | Inside Signal, block B | Three |
+| Pricing | Inside Signal, block C | Three |
+| Same business. Different week. | `/build` | Three |
+| Guarantee, the "No surprises" block | `/build` | Three |
+| The six-row build price table | `/build` | Three |
+| Each system's "what gets built" prose | `/build` | Three |
 
 Do not restore any of these as a standalone section without removing its replacement. The
 page is being rebuilt to stop saying the same thing in four places.
 
 `<SixStack variant="product" />` and `variant="hero"` are retired. The stack appears once,
-as the interactive `detail` variant in The Six. The hero uses photography, as it does live.
+as the interactive `detail` variant in Signal block B.
+
+**The hero uses photography.** `03-content.md` once demanded a screenshot there; that
+contradiction is settled. The screenshot of the Signal interface renders in Signal block A,
+next to "One login instead of nine", which is the sentence it actually supports.
 
 ## Still undecided, do not invent an answer
 
@@ -195,3 +231,10 @@ as the interactive `detail` variant in The Six. The hero uses photography, as it
 - Whether there is a cap on how many Components one customer can hold. The old "we cap it
   at two" line is not in the current offer. Do not write it back in.
 - The Proof section has no real client yet. Placeholders only.
+
+**Three round-three copy gaps, added 2026-08-19.** Each is resolved by moving a sentence that
+already exists, not by writing one, and each still needs Nathan's yes before it renders.
+Until then render the token literally: `{{HERO_H1}}`, `{{FINAL_CTA_HEADLINE}}`,
+`{{STAKES_CLOSING_LINE}}`. The proposed source sentence for each is in the table under
+"Copy this restructure needs" in `03-content.md`. Do not assemble a headline out of nearby
+copy and do not write a plausible one.

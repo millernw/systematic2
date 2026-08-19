@@ -72,12 +72,18 @@ This is the fix for the scattered-offer problem, and it is not optional.
 | Old route | Becomes | Why |
 |---|---|---|
 | `/signal` | 301 to `/#signal` | Its job is now the homepage Signal section |
-| `/pricing` | 301 to `/#pricing` | Its job is now the homepage Pricing section |
+| `/pricing` | 301 to `/#pricing` | Its job is now the pricing sub-block of that section |
 | `/calibration` | 301 to `/build` | The name is retired and the content moved |
 
-All three are live today and each holds a different fragment of the offer, which is exactly
-why a reviewer had to visit several pages to work out what was being sold. Deleting them is
-what makes the homepage the offer rather than a summary of it.
+After round three, `#the-six` and `#pricing` are ids on sub-blocks **inside** the `#signal`
+section rather than ids on sections of their own. The redirects are unaffected; an anchor
+does not care what element carries it. Do not recreate the sections to give the anchors a
+home.
+
+**All three were still returning 200 on 2026-08-19**, two rounds after this table was
+written. `/signal` serves an entirely separate old page. Each holds a different fragment of
+the offer, which is exactly why a reviewer had to visit several pages to work out what was
+being sold. This is the first thing round three ships.
 
 Do not recreate them under new names. No `/how-it-works`, no `/what-you-get`, no `/plans`.
 If a page's job is to explain Signal or to list prices, that page is `/`.
@@ -88,9 +94,16 @@ anchors instead. `/components` and `/signal-plus` stay in the footer.
 Every remaining subpage is optional reading. If a fact only exists on a subpage, it is in
 the wrong place. The subpages hold detail and depth, never the offer itself.
 
-Header nav: Signal, The Six, Pricing, About, plus Industries only when at least one
-industry is published. One `--amber` button, "Get my free Six-Point Scorecard". The header is
-sticky, `--paper` at 95%, with a 12px backdrop blur and a hairline bottom border.
+Header nav: Signal, Pricing, About, plus Industries only when at least one industry is
+published. "The Six" leaves the nav in round three, because it is now a sub-block of Signal
+and two nav items pointing into one section is noise.
+
+**Exactly one `--amber` button**, "Get my free Six-Point Scorecard". The header rendered a
+second button, "Audit", as of 2026-08-19. Delete it. The Scorecard is the only call to
+action on this site and a second header button competes with it.
+
+The header is sticky, `--paper` at 95%, with a 12px backdrop blur and a hairline bottom
+border.
 
 ## Industry pages
 
@@ -142,25 +155,41 @@ is the price. `signalExamples` is three illustrations of that rule, never a pack
 Never render them as selectable tiers, cards, or columns, and never expand them into a row
 per seat count.
 
-## Pricing section structure
+## The Signal section, and the pricing block inside it
 
-**Three blocks, not four**, on `--cream`, using the card idiom. This section was 34% of the
-homepage and is now roughly half its former size.
+Round three collapsed three sections into one. `#signal` is **one** `<Section>` containing
+three sub-blocks. One eyebrow pill at the top of the section and none between the blocks;
+block A's heading is the section's `h2` and blocks B and C open with an `h3`. That single
+structural fact is what makes the reader experience one argument instead of three.
+
+`spec-check.js` asserts the section contains exactly one `h2`. Three `h2`s means the three
+old sections came back.
+
+**Block A, what it is.** Existing eyebrow, the `h2`, its body paragraph, the Signal
+interface screenshot, and the four cards as a single row of four rather than two by two. The
+before/after module is gone from here; it is on `/build`.
+
+**Block B, `#the-six`.** `h3`, body paragraph, `<SixStack variant="detail" />` with prices on
+the bands, then the concession line. The detail panel renders `plainQuestion` and
+`brokenSignal` only. It does **not** render `whatItIs`, and after round three it does not
+render the "what gets built" prose either. Both are `/build` material.
+
+**Block C, `#pricing`.** Two figures, not three blocks of cards. Roughly a quarter of its
+former size.
 
 1. **Signal monthly.** `$297` in display type, the seat rule in one sentence, three
-   `signalExamples` rows under "For example", and a text link to `/build` reading "See
-   everything included". The twenty-item inclusion list is NOT here any more. It lives on
-   `/build`. Nothing in this block is selectable and nothing is gated.
+   `signalExamples` rows under "For example". Nothing selectable, nothing gated, no
+   monthly/annual toggle. The twenty-item inclusion list is on `/build`.
+2. **The build.** `$9,240` in display type and the comparison sentence, which already
+   carries $11,550 against $9,240 in one line. **`buildRows.ts` no longer renders on the
+   homepage.** The two-column table, its `20% off` pill, the "lines coming off" line and the
+   closing contrast line all move to `/build`. `buildRows.ts` stays in `src/content/`; only
+   its homepage consumer goes away.
+3. **`noSurprises.ts` no longer renders on the homepage.** In its place, one `--steel` line
+   built from two sentences already inside it. The full list renders on `/build`, at body
+   size with real spacing, not as fine print.
 
-2. **The build.** `$9,240` in display type, the comparison sentence, then `buildRows.ts` as
-   a two-column table. The `subtotal` row is `--steel`; the `emphasis` row is the only one
-   in display type and carries an amber `20% off` pill. One `--steel` line beneath about
-   lines coming off, then the closing contrast line and a link to `/build`. No calculator,
-   no checkboxes, no running total. The three "how we price" cards are gone.
-
-3. **No surprises.** Heading, one body paragraph, then `noSurprises.ts`. Body-size type,
-   real spacing, not fine print. The three guarantee cards are gone; the paragraph and the
-   list already carried their content.
+**One** text link to `/build`, not two. Then one `--amber` button closing the section.
 
 **Components do not appear in this section or anywhere on the homepage.** They live on
 `/components`, linked from one FAQ answer and the footer. A homepage that sells two things

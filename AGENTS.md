@@ -35,11 +35,13 @@ judgment.
 - **There is one product, called Signal.** It has a one-time build and a monthly
   subscription. The build has no brand name. If you write the word "Calibration" anywhere
   in rendered output, that is a defect.
-- **The homepage carries the whole offer at decision depth.** Both prices in the hero, the
-  six systems with prices, and enough to decide to contact us without clicking anything.
-  That is not the same as every detail: reference material a buyer reads after deciding,
-  like the inclusion list and the add-on catalogue, belongs on `/build`. Components are not
-  on the homepage at all.
+- **The homepage's one job is getting a stranger to the button**, not letting them decide
+  without clicking. It carries both prices, what Signal is, and the six systems with prices.
+  It does not carry the build price table, the eight-item guarantee, the inclusion list, the
+  add-on catalogue, each system's full description, or the before/after module. All of those
+  are on `/build`. Components are not on the homepage at all. Round three, 2026-08-19: seven
+  rendered sections, ~1,050 words, ~6,700px. If you render more than seven, a merged section
+  has come back as a standalone. Count them.
 - The six systems sort by their `order` field, never by array position. Core Build is 1 at
   the base and the other five rest on it. The order is the argument.
 - The six names in `six.ts` and the four names in `components.ts` overlap exactly on
@@ -50,6 +52,15 @@ judgment.
 - Signal has one price that scales by seats, not tiers or packages. Three example rows on
   the homepage, never a row per seat count. Nothing is selectable, nothing is gated. The
   inclusion list is on `/build`, not the homepage.
+- **Signal, The Six and Pricing are ONE section**, `#signal`, with three sub-blocks. One
+  eyebrow pill at the top and none between the blocks; blocks B and C open with an `h3` and
+  nothing else. `#the-six` and `#pricing` survive as ids on the sub-blocks so the deleted
+  routes have somewhere to land. If you render three eyebrow pills here you have rebuilt the
+  three sections this replaced.
+- **The plan comes before the offer.** How it works is section three, not section seven, and
+  the credential strip renders inside it. The strip is not in the hero any more and it is not
+  in Proof. It appears exactly once.
+- **The FAQ renders below the Final CTA.** Nothing sits between Proof and the Final CTA.
 - The pricing build table and `/build` publish prices and are read-only. No checkboxes, no
   totals, no estimator.
 - Signal+ appears in exactly four places: one line under How It Works, one FAQ answer,
@@ -58,7 +69,9 @@ judgment.
   leave no gap. `/industries/[slug]` 404s for every seed.
 - `{{WEBSITE_CANCELLATION_TERMS}}` and `{{TEXT_ALLOWANCE_POLICY}}` are unresolved
   decisions. Render both tokens literally. Do not write a plausible sentence in either
-  place.
+  place. Round three adds three more, all awaiting Nathan's approval: `{{HERO_H1}}`,
+  `{{FINAL_CTA_HEADLINE}}` and `{{STAKES_CLOSING_LINE}}`. Same rule. Do not assemble one out
+  of nearby copy either.
 - Copy lives in `src/content/` only. A sentence inside a component is a second source of
   truth and will drift. `checks/copy-source-check.sh` fails on it.
 - Never render internal hours, cost, margin, or effective hourly rate. They are not in this
@@ -81,10 +94,11 @@ the following, you are rebuilding a site that no longer exists:
 - Replacing cards with hairline lists. **Cards are the container idiom.** The old "lists
   beat cards" rule applied to a site with no images and no interactive modules, and it no
   longer applies.
-- Removing photography. The site uses real small-business photography on purpose. The one
-  exception is the hero, which carries a **screenshot of the actual Signal interface**, not
-  a photo of a person. The core claim is one login instead of nine, and that stays abstract
-  until the reader sees the login.
+- Removing photography. The site uses real small-business photography on purpose, **and the
+  hero keeps its photograph.** The screenshot of the actual Signal interface renders in
+  Signal block A, beside "One login instead of nine", which is the claim it supports. Older
+  copies of these docs put the screenshot in the hero and the contradiction is now settled
+  the other way.
 
 ## `prompts/`
 

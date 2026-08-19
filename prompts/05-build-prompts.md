@@ -1,5 +1,12 @@
 # Build Prompts
 
+> **Stale as of 2026-08-19.** This file is the round-two sequence. Round three restructured
+> the homepage from ten sections to seven and its prompts are in `07-restructure.md`. The
+> section order, the section count and the "pricing immediately after the six" rule below
+> are all superseded. Prompts 1 through 11 remain useful as a record of how the current site
+> was built; do not paste them at a tool without checking each against
+> `docs/03-content.md` first.
+
 This file is for you, not for the tool. Each prompt is short on purpose: the detail lives
 in the reference docs, so the tool reads a current spec instead of your recollection of
 one.

@@ -67,3 +67,75 @@ Prose rules decay. Every correction written as a prompt is a patch the repo does
 about, so the next session rebuilds toward the repo and the correction is silently undone.
 `checks/spec-check.js` converts the rules into pass/fail so drift is caught in seconds. A
 rule nobody tests is a rule that decays.
+
+## Round three: why the page was restructured again, 2026-08-19
+
+Round two cut the page to be understood in fewer words. Round three reorders it to be acted
+on. They are different jobs and round two only did the first one, and only halfway: measured
+live on 2026-08-19 the homepage was 10,748px and 1,771 words, which is *more* than the 1,666
+it started at.
+
+The frame is the standard seven-beat landing page: hero, stakes, plan, guide credibility,
+offer breakdown, proof, final CTA with an explicit statement of success. Measured against
+it, four things were wrong and all four were positional rather than verbal. The copy was
+mostly fine. The order was not.
+
+## Why the plan moved from seventh to third
+
+"Audit, Build, Run, and we do two of them" is the most reassuring sentence on the site and it
+sat at 66% scroll, behind 4,800px of product and pricing. A reader decides whether working
+with someone sounds survivable *before* they evaluate what is being sold. Moving it cost
+nothing and it is the highest-leverage change in the round.
+
+## Why three pain sections became one
+
+Round two was supposed to fix this and did not. The hero was pain, "You are the marketing"
+was pain, and "Two options" was pain a third time as two dead ends. 21% of the page ran
+before Signal was named. The hero's headline, "You're the system. That's why your marketing
+stops when you get busy," is the best sentence on the site and it is a *stakes* statement,
+not a hero statement, so it moved down into the merged section rather than being deleted.
+
+## Why the offer became one section
+
+Signal, The Six and Pricing were three sections, three eyebrow pills, and 45% of the page,
+making a single argument: here is the thing, here is what is in it, here is what it costs.
+Three eyebrow pills is what tells a reader they are on their third topic. One pill and two
+`h3`s is the same content read as one beat.
+
+## Why the decision-depth rule was overturned
+
+The round-two rule was: a visitor must be able to decide without clicking anything. That rule
+is what put the six-row build table, the eight-item guarantee, the full system descriptions
+and the before/after module on the homepage, and it is the direct cause of a 10,748px page.
+It optimised for the rare reader who wants every line before talking to anyone. That reader
+exists, and `/build` is now a real page that serves them — it 404'd when the rule was
+written, which is probably why the rule was written.
+
+The homepage still publishes both prices and all six system prices, because published pricing
+is the entire differentiator. It stops publishing the arithmetic behind them.
+
+## Why the credential strip left the hero
+
+The hero's job is one message and one button. A four-item credential strip inside it is a
+competing element. The strip is also the guide-credibility beat, and the frame puts that next
+to the plan, so it moved to sit under How it works. It renders exactly once either way.
+
+## Why the final CTA stopped restating the problem
+
+It read "Find out which of six is costing you the most" — a problem statement at the exact
+moment the page should describe the resolution. The replacement is "You stop being the part
+that breaks," which was already on the page as the last sentence of the hero subhead. It
+survives Rule 2 because it describes the owner's experience rather than a business result.
+
+## Why the FAQ moved below the final CTA
+
+Twelve entries were never the problem and 1,300px between Proof and the CTA was. Proof exists
+to make the button feel safe; anything between them wastes it. Below the CTA the FAQ still
+catches the reader who scrolls past.
+
+## Why nothing here is a copy rewrite
+
+Every round-three change is a move, a deletion, or a treatment change. The three places that
+needed a sentence that did not exist are tokens awaiting approval rather than invented copy:
+`{{HERO_H1}}`, `{{FINAL_CTA_HEADLINE}}` and `{{STAKES_CLOSING_LINE}}`. Each has a proposed
+source sentence already on the site. Rule 1 held.

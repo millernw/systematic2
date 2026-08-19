@@ -50,10 +50,13 @@
   // ---- homepage only ----
   if (url === "/" || url === "") {
     const secs = els("section").filter(s => s.offsetHeight > 50);
-    check("Homepage renders 10 sections", secs.length === 10, `${secs.length} sections`);
+    check("Homepage renders 7 sections", secs.length === 7, `${secs.length} sections`);
 
     const words = visible.split(/\s+/).length;
-    check("Homepage under 1,500 words", words < 1500, `${words} words`);
+    check("Homepage under 1,200 words", words < 1200, `${words} words`);
+
+    check("Homepage under 7,500px", document.body.scrollHeight < 7500,
+          `${document.body.scrollHeight}px`);
 
     check("Both prices in the hero",
           /\$9,240/.test(secs[0]?.innerText || "") && /\$297/.test(secs[0]?.innerText || ""));
@@ -61,10 +64,20 @@
     const heroImg = secs[0]?.querySelector("img");
     check("Hero has an image", !!heroImg, heroImg ? (heroImg.alt || "no alt") : "none");
 
+    // Round three. The hero does one job: one message, one button, no credential strip.
+    check("Credential strip is not in the hero", !/15\+ years/.test(secs[0]?.textContent || ""));
+
+    const heroBtns = els("section:first-of-type a, section:first-of-type button")
+          .filter(e => getComputedStyle(e).backgroundColor === "rgb(252, 211, 77)");
+    check("Hero has exactly one amber button", heroBtns.length === 1, `${heroBtns.length}`);
+
+    const hdrBtns = els("header a, header button")
+          .filter(e => getComputedStyle(e).backgroundColor === "rgb(252, 211, 77)");
+    check("Header has exactly one amber button", hdrBtns.length === 1,
+          hdrBtns.map(b => (b.innerText||"").trim()).join(" | "));
+
     check("No duplicate 'runs through your memory'",
           count(/Every lead you get runs through your memory/g) <= 1);
-
-    check("Credentials line appears once", count(/15\+ years/g) === 1);
 
     check("Math calculator is not on the homepage", !/Adjust the inputs/i.test(t));
 
@@ -78,21 +91,71 @@
 
     check("FAQ numbering is two-digit", !/\b0\d\d\b/.test(t));
 
-    // pricing must come immediately after the six
-    const idx = (needle) => secs.findIndex(s => (s.innerText || "").includes(needle));
-    const six = idx("Six systems."), price = idx("Two numbers. Both published.");
-    check("Pricing immediately follows The Six", six > -1 && price === six + 1, `six@${six} pricing@${price}`);
+    // Round three. Everything below moved to /build and must not come back.
+    check("Before/after module is not on the homepage",
+          !/Same business\. Different week/i.test(t));
+
+    check("No-surprises list is not on the homepage",
+          !/Carrier registration fees are on us/i.test(t));
+
+    // The $11,550 figure STAYS, in the comparison sentence. The six-row table is what goes.
+    check("Build price table is not on the homepage",
+          !/All six, listed separately/i.test(t),
+          "the six-row table and its 20% off pill belong on /build");
+
+    check("System descriptions are not on the homepage",
+          !/What gets built in Signal/i.test(t));
+
+    // Round three ordering. The offer is ONE section; the plan comes before it;
+    // proof and the final CTA are adjacent; the FAQ is below the CTA.
+    const idx = (needle) => secs.findIndex(s => (s.textContent || "").includes(needle));
+    const plan   = idx("Three steps to success");
+    const offer  = idx("One login instead of nine");
+    const proof  = idx("what they'll tell you about the work");
+    const faq    = idx("Frequently asked questions");
+    const cta    = secs.findIndex((s, i) => i > proof && i !== faq &&
+                     els("a,button").some(b => s.contains(b) && /scorecard/i.test(b.innerText || "")));
+
+    check("The plan comes before the offer", plan > -1 && offer > -1 && plan < offer,
+          `plan@${plan} offer@${offer}`);
+
+    check("Six and Pricing are inside the offer section",
+          offer > -1 && /Six systems\./.test(secs[offer].textContent) &&
+          /Two numbers\. Both published\./.test(secs[offer].textContent),
+          "they must be h3 sub-blocks of #signal, not their own sections");
+
+    // Blocks B and C open with an h3. Three h2s means the three old sections came back.
+    const offerH2 = offer > -1 ? secs[offer].querySelectorAll("h2").length : -1;
+    check("Offer section has one h2, with B and C as h3", offerH2 === 1,
+          `${offerH2} h2 elements in #signal`);
+
+    check("Nothing sits between Proof and the Final CTA",
+          proof > -1 && cta === proof + 1, `proof@${proof} cta@${cta}`);
+
+    check("FAQ renders below the Final CTA", faq > -1 && cta > -1 && faq > cta,
+          `faq@${faq} cta@${cta}`);
 
     // CTA distribution
     const ctas = els("a,button").filter(e => /scorecard/i.test(e.innerText || ""));
     const tops = ctas.map(e => e.getBoundingClientRect().top + scrollY).sort((a,b)=>a-b);
     const biggestGap = tops.reduce((m,v,i) => i ? Math.max(m, v - tops[i-1]) : m, 0);
-    check("No CTA gap over 35% of page", biggestGap < document.body.scrollHeight * 0.35,
+    check("No CTA gap over 30% of page", biggestGap < document.body.scrollHeight * 0.30,
           `largest gap ${Math.round(biggestGap)}px of ${document.body.scrollHeight}px`);
 
-    check("Pricing section under 25% of page",
-          price > -1 && secs[price].offsetHeight < document.body.scrollHeight * 0.25,
-          price > -1 ? `${secs[price].offsetHeight}px` : "n/a");
+    check("Offer section under 30% of page",
+          offer > -1 && secs[offer].offsetHeight < document.body.scrollHeight * 0.30,
+          offer > -1 ? `${secs[offer].offsetHeight}px of ${document.body.scrollHeight}px` : "n/a");
+
+    check("Stakes section is no taller than the hero",
+          secs[1] && secs[0] && secs[1].offsetHeight <= secs[0].offsetHeight,
+          secs[1] ? `stakes ${secs[1].offsetHeight}px vs hero ${secs[0].offsetHeight}px` : "n/a");
+
+    check("Stakes section renders no cards",
+          secs[1] && secs[1].querySelectorAll('[class*="rounded-3xl"],[class*="rounded-2xl"]').length === 0,
+          secs[1] ? `${secs[1].querySelectorAll('[class*="rounded-3xl"],[class*="rounded-2xl"]').length} cards` : "n/a");
+
+    check("Credential strip renders exactly once, in How it works",
+          count(/15\+ years/g) === 1 && plan > -1 && /15\+ years/.test(secs[plan].textContent));
   }
 
   // ---- mobile, runs whenever the viewport is under 768 ----
@@ -116,6 +179,19 @@
       check("Core Build detail is open on load",
             !!stack && /one login or nine/i.test(stack.textContent || ""));
     }
+  }
+
+  // ---- build, the decision-depth page ----
+  if (/\/build/.test(url)) {
+    // Round three moved five things here. Assert each one landed.
+    check("/build carries the before/after module", /Same business\. Different week/i.test(t));
+    check("/build carries the build price table", /All six, listed separately/i.test(t) && /\$11,550/.test(t));
+    check("/build carries the no-surprises list", /Carrier registration fees are on us/i.test(t));
+    check("/build carries the system descriptions", /What gets built in Signal/i.test(t) ||
+          /Your account built, your contacts imported/i.test(t));
+    check("/build carries the inclusion list", /Included at every price/i.test(t));
+    check("/build is read-only", els("input[type=checkbox],select").length === 0 &&
+          !/estimate|your total|running total/i.test(t));
   }
 
   // ---- work ----

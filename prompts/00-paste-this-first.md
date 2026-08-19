@@ -1,7 +1,7 @@
 # Paste this first
 
 One orientation prompt. Paste it into the vibe coder as the first message of the session,
-before any build prompt from `05-build-prompts.md`.
+before any build prompt from `07-restructure.md`.
 
 It does three things: tells the tool this is an edit rather than a rebuild, tells it which
 document governs which kind of work, and makes it prove it read them before it writes a
@@ -16,9 +16,15 @@ Re-paste it after any context reset, and any time the work starts drifting.
 You are working on the Systematic marketing website.
 
 This is an EDIT of a live, working site at gosystematic.com. It is not a new build and
-it is not a redesign. Most of the site is good and stays. Four things change, and they
-are listed in docs/00-START-HERE.md. If your diff touches anything beyond those four
-things plus the names and prices they carry, you have gone too far.
+it is not a redesign. Most of the site is good and stays.
+
+We are on ROUND THREE, dated 2026-08-19. It restructures the homepage from ten rendered
+sections to seven and moves five things onto /build. The section map is the Homepage
+section of docs/03-content.md and it is authoritative. Where any other document disagrees
+with it about the homepage, it wins.
+
+Round three is almost entirely a MOVE. If your diff rewrites a sentence rather than
+relocating it, you have gone too far.
 
 STEP 1. Read these files completely, in this order, before you write anything:
 
@@ -32,9 +38,11 @@ STEP 1. Read these files completely, in this order, before you write anything:
                               Where it contradicts your instincts, it wins.
   4. docs/02-architecture.md  Read before ANY structural work: stack, file structure,
                               routing, the shared Section component, pricing layout.
-  5. docs/03-content.md       Read before writing ANY copy. Every word on the site is
-                              in here. You do not write marketing copy for this site
-                              and you do not improve the copy that exists.
+  5. docs/03-content.md       Structure, order, placement and treatment. NO sentences.
+                              Its Homepage section is the authority for round three.
+                              The words themselves are in src/content/ and nowhere else.
+                              You do not write marketing copy for this site and you do
+                              not improve the copy that exists.
   6. docs/04-data-files.md    Read before creating or editing anything in src/config
                               or src/content. It contains the literal file contents.
                               Every price traces to a pricing workbook. Use them exactly.
@@ -43,23 +51,26 @@ STEP 1. Read these files completely, in this order, before you write anything:
 
 STEP 2. Do not build yet. Reply with only the following, so I know the spec landed:
 
-  a. The ten homepage sections, in order.
-  b. The four sections that were merged into other sections, and where each one went.
-  c. The three routes that are deleted, and what each redirects to.
-  d. The display typeface, the primary button color, and how eyebrows are rendered.
-  e. The two unresolved tokens that must still render literally.
-  f. Anything in the current codebase that contradicts a, b, c or d. List it. Do not
+  a. The seven homepage sections, in order.
+  b. The four sections merged into other sections in round three, and where each went.
+  c. The five things that move from the homepage to /build.
+  d. The three routes that are deleted, and what each redirects to.
+  e. The display typeface, the primary button color, and how eyebrows are rendered.
+  f. The five unresolved tokens that must still render literally.
+  g. Where the Signal interface screenshot renders, and what the hero image is.
+  h. Anything in the current codebase that contradicts a through g. List it. Do not
      fix it yet.
 
 STEP 3. Stop and wait. I will send build prompts one at a time.
 
 THE RULES, which override your own judgment about what would look good:
 
-  1. Copy comes from docs/03-content.md verbatim. If a section needs words that are not
-     in that file, stop and ask me.
+  1. Copy comes from src/content/, not from any doc. docs/03-content.md holds structure
+     and placement and no sentences. If a section needs words that are not in
+     src/content/, stop and ask me.
   2. No claims about results. No lead counts, revenue figures, growth percentages or
-     ROI, anywhere, including placeholders. The Math calculator is the single exception
-     and it has written conditions in docs/03-content.md. Read them before touching it.
+     ROI, anywhere, including placeholders. The Math calculator is the single exception,
+     it lives on /diagnostic, and it has written conditions. Read them before touching it.
   3. Every price is published. The strings "starting at", "starts at", "contact us",
      "custom quote", "get a quote", "request a demo" and "from $" appear nowhere.
   4. No product name or price is hardcoded in a component. Everything reads from
@@ -70,17 +81,25 @@ THE RULES, which override your own judgment about what would look good:
   7. End every response by naming which of these seven rules your work touched and how
      you complied. One line each. This is not optional.
 
-FIVE THINGS THAT WILL BREAK THIS IF YOU GET THEM WRONG:
+SIX THINGS THAT WILL BREAK THIS IF YOU GET THEM WRONG:
 
   - There is ONE product, called Signal. It has a one-time build and a monthly
     subscription. The build is called "the build." The word "Calibration" must not
     appear in any rendered output.
   - /signal and /pricing are DELETED and become homepage anchors. /calibration 301s to
-    /build. If you build a page whose job is to explain Signal or to list prices, that
-    page is the homepage. This is the single most important change in the whole project.
-  - The homepage is TEN rendered sections. If you render more, a section that was merged
-    has come back as a standalone. Count them before you tell me you are done.
-  - Pricing comes immediately after The Six, with nothing between them.
+    /build. All three still returned 200 on 2026-08-19. This is the single most important
+    change in the whole project and it has not shipped yet.
+  - The homepage is SEVEN rendered sections: Hero, Stakes, How it works, Signal, Proof,
+    Final CTA, FAQ. Industries renders null and does not count. If you render more, a
+    section that was merged has come back as a standalone. Count them before you tell me
+    you are done.
+  - Signal, The Six and Pricing are ONE section with three sub-blocks, one eyebrow pill
+    at the top and none between them. How it works comes BEFORE it. The FAQ renders below
+    the Final CTA, and nothing sits between Proof and the Final CTA.
+  - Five tokens render literally until I approve them: {{WEBSITE_CANCELLATION_TERMS}},
+    {{TEXT_ALLOWANCE_POLICY}}, {{HERO_H1}}, {{FINAL_CTA_HEADLINE}} and
+    {{STAKES_CLOSING_LINE}}. spec-check.js fails on unresolved tokens. That failure is
+    expected. Do not write your way out of it.
   - The design is Plus Jakarta Sans, pill eyebrows in sentence case, amber buttons with
     ink text, brand gradient for dark sections, and cards. It is NOT IBM Plex, NOT
     uppercase mono labels, NOT emerald buttons, NOT flat ink sections, and NOT hairline
