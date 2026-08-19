@@ -10,13 +10,14 @@ judgment.
 |---|---|
 | Anything visual | `docs/01-design-system.md` |
 | Structure, routing, components | `docs/02-architecture.md` |
-| Any words on a page | `docs/03-content.md` |
+| Where a section goes and what shape it takes | `docs/03-content.md` |
+| The words themselves | `src/content/`, never a doc |
 | Config or content files | `docs/04-data-files.md` |
 
 ## The rules, short version
 
-1. Copy comes from `docs/03-content.md` verbatim. Do not write it, do not improve it. If a
-   section needs words that are not there, stop and ask.
+1. Copy comes from `src/content/`. Do not write it, do not improve it. If a section needs
+   words that are not there, stop and ask. `docs/03-content.md` holds structure, not words.
 2. No claims about results. No lead counts, revenue figures, growth percentages, or ROI,
    anywhere, including placeholders.
 3. Every price is published. The strings "starting at", "contact us", "custom quote", "get
@@ -58,6 +59,8 @@ judgment.
 - `{{WEBSITE_CANCELLATION_TERMS}}` and `{{TEXT_ALLOWANCE_POLICY}}` are unresolved
   decisions. Render both tokens literally. Do not write a plausible sentence in either
   place.
+- Copy lives in `src/content/` only. A sentence inside a component is a second source of
+  truth and will drift. `checks/copy-source-check.sh` fails on it.
 - Never render internal hours, cost, margin, or effective hourly rate. They are not in this
   repo and must not be invented.
 

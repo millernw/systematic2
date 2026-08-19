@@ -23,7 +23,7 @@ containing only this:
 ```
 Before any work on this project, read /docs/00-START-HERE.md. It indexes five other
 reference documents and lists seven rules that override your judgment. Never write
-marketing copy: it lives in /docs/03-content.md. Never hardcode a price or product name:
+marketing copy: it lives in src/content/. Never hardcode a price or product name:
 they live in /docs/04-data-files.md. Confirm which rules your work touched at the end of
 every response.
 ```
@@ -58,7 +58,7 @@ Build the foundation only:
 5. Delete the /signal and /pricing pages and 301 them to /#signal and /#pricing. 301
    /calibration to /build. Add the three anchor ids when you stub the sections below so
    the redirects have somewhere to land.
-6. The hero, copy verbatim from docs/03-content.md: both prices, a SCREENSHOT of the actual
+6. The hero, copy from src/content/, structure from docs/03-content.md: both prices, a SCREENSHOT of the actual
    Signal interface (not a stock photo), and the credential strip. If no screenshot exists,
    stop and tell me rather than substituting a photo.
 7. SixStack stubbed. It has one variant, `detail`, built later in prompt 5
@@ -258,7 +258,7 @@ and New Leads are retired and appear nowhere.
 The Math calculator moves here from the homepage. Its average customer value default is
 $300, not $750. Read the Rule 2 conditions in docs/03-content.md before touching it.
 
-Copy is verbatim from docs/03-content.md. Run checks/spec-check.js on this page when done.
+Copy comes from src/content/. Structure comes from docs/03-content.md. Run checks/spec-check.js on this page when done.
 ```
 
 ---
@@ -314,8 +314,13 @@ something went badly wrong.
 > Fix them. Do not change anything else.
 
 **Copy invented or improved**
-> You wrote or altered copy. Every word on this site comes from docs/03-content.md verbatim.
-> Diff what is rendered against that file and restore it. List what you changed back.
+> You wrote or altered copy. Every word on this site comes from src/content/. Diff what is
+> rendered against those files and restore it. List what you changed back.
+
+**Copy crept back into a component**
+> Run checks/copy-source-check.sh. Every hit is a sentence, price or product name living
+> outside src/content/ and src/config/, which makes it a second source of truth. Move each
+> one and show the diff.
 
 **Results claim appeared**
 > You wrote a claim about results. Find every sentence implying a lead count, revenue
@@ -401,6 +406,7 @@ something went badly wrong.
 
 ## Review checklist before you call it done
 
+- [ ] `bash checks/copy-source-check.sh` passes
 - [ ] Every price on the site matches `brand.ts`, and `brand.ts` matches the pricing
       workbook
 - [ ] Fonts are Plus Jakarta Sans. IBM Plex renders nowhere.

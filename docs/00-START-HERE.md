@@ -10,7 +10,7 @@ Read it fully, then read the file the current task points to.
 | `00-START-HERE.md` | Rules, build order, project facts | Every session, every time |
 | `01-design-system.md` | Tokens, type, layout, motion, what not to do | Before any visual work |
 | `02-architecture.md` | Stack, file structure, config, routing, components | Before any structural work |
-| `03-content.md` | Every word on the site | Before writing any copy |
+| `03-content.md` | Structure, order, placement, treatment. No copy. | Before moving or building any section |
 | `04-data-files.md` | Literal contents of the typed data files | When creating or editing data |
 | `06-scorecard-flow.md` | The Scorecard capture flow, the only lead capture on the site | Before any work under `/diagnostic` |
 | `../prompts/05-build-prompts.md` | The prompt sequence and correction prompts | Human uses this, not you |
@@ -68,9 +68,9 @@ that file to do the work.
 
 These override anything else, including your own judgment about what would look good.
 
-1. **Copy comes from `03-content.md` verbatim.** You do not write marketing copy. You do
-   not improve supplied copy. If a section needs words that are not in that file, stop
-   and ask.
+1. **Copy comes from `src/content/`.** You do not write marketing copy and you do not
+   improve the copy that exists. If a section needs words that are not in `src/content/`,
+   stop and ask. `03-content.md` holds structure and placement, not sentences.
 
 2. **No claims about results.** No lead counts, cost per lead, revenue figures, growth
    percentages, or ROI, anywhere, including placeholders. Describe what the system does,
