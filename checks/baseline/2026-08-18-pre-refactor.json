@@ -1,0 +1,16 @@
+{
+  "captured": "2026-08-18",
+  "method": "document.querySelector('main').textContent, whitespace collapsed to single spaces, SHA-256 truncated to 16 hex chars",
+  "purpose": "Acceptance test for the copy refactor. The refactor is a pure move: every sha below must be identical afterwards. A changed sha means a word changed in transit.",
+  "pages": {
+    "/":            { "words": 1666, "chars": 10100, "sha": "62f4736a56d96f1c" },
+    "/diagnostic":  { "words": 553,  "chars": 3471,  "sha": "f29a0c381c1bc3e9" },
+    "/work":        { "words": 193,  "chars": 1278,  "sha": "42f420e319e38874" },
+    "/about":       { "words": 625,  "chars": 3824,  "sha": "549067cc7a8235ea" },
+    "/components":  { "words": 451,  "chars": 2825,  "sha": "4a6c465120f01f4c" },
+    "/signal-plus": { "words": 219,  "chars": 1492,  "sha": "56af40f63de7e619" }
+  },
+  "excluded": {
+    "/build": "Returns 404 on the live site. The homepage pricing section links to it twice and /calibration is supposed to 301 there. Fix the route before including it in a baseline."
+  }
+}
