@@ -107,9 +107,19 @@ Three eyebrow pills is what tells a reader they are on their third topic. One pi
 The round-two rule was: a visitor must be able to decide without clicking anything. That rule
 is what put the six-row build table, the eight-item guarantee, the full system descriptions
 and the before/after module on the homepage, and it is the direct cause of a 10,748px page.
-It optimised for the rare reader who wants every line before talking to anyone. That reader
-exists, and `/build` is now a real page that serves them — it 404'd when the rule was
-written, which is probably why the rule was written.
+It optimised for the rare reader who wants every line before talking to anyone.
+
+**Correction, 2026-08-19.** The original version of this paragraph said `/build` "is now a
+real page that serves them". It is not. It renders a 404, and it did when this was written.
+The error came from trusting a `curl` status code on a client-side SPA, which answers every
+path with `index.html` and a 200 whether or not the route exists — the same mistake that
+produced a wrong finding about the legacy redirects.
+
+The decision to overturn the rule still holds, because it never depended on `/build`
+existing: a 10,748px homepage is too long whether or not there is a second page. But the
+ordering does change. `/build` has to be built before anything is cut from the homepage,
+which makes it a prerequisite of the restructure rather than a destination that was already
+waiting.
 
 The homepage still publishes both prices and all six system prices, because published pricing
 is the entire differentiator. It stops publishing the arithmetic behind them.

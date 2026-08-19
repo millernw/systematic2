@@ -107,7 +107,10 @@ Checked properly, by navigating in a browser, all three already redirect to the 
 
 What is actually still wrong is narrower, and neither part is visible from a browser:
 
-1. **`/calibration` lands on `/`, not on `/build`.** Wrong destination.
+1. **`/signal` and `/pricing` land on `/` with no anchor**, so a visitor arrives at the top
+   of the homepage rather than at the section the link promised. `/calibration` does go to
+   `/build`, which is the right destination — but `/build` renders a 404, which Prompt B
+   fixes.
 2. **All three are client-side redirects, not 301s.** The spec asks for 301s and the
    difference is real: a client-side redirect passes no link equity, and a crawler sees a
    200 with a page of content rather than a permanent move. `/signal` additionally still has
@@ -121,9 +124,9 @@ Three legacy routes redirect client-side today. They need to be real server-side
 one of them points at the wrong place. Do not remove the client-side redirects until the
 server-side ones are confirmed working; for a moment both will exist and that is fine.
 
-1. /signal      301 to /#signal
-2. /pricing     301 to /#pricing
-3. /calibration 301 to /build     <- currently lands on /, which is wrong
+1. /signal      301 to /#signal    <- currently lands on / with no anchor
+2. /pricing     301 to /#pricing   <- currently lands on / with no anchor
+3. /calibration 301 to /build      <- destination is right; /build itself 404s, see Prompt B
 
 These must be issued by the server or the edge, not by the React router. Where they are
 configured depends on the host: a _redirects file, a redirects array in the build config, a
@@ -160,14 +163,28 @@ for u in signal pricing calibration; do curl -s -o /dev/null -w "/$u %{http_code
 Three `301`s, with `/calibration` pointing at `/build`. A `200` means the SPA fallback is
 still answering and nothing was fixed at the server.
 
-## Prompt B, /build absorbs what the homepage is about to drop
+## Prompt B, build /build, then move things into it
 
 Second, and before prompt C. Moving copy out of a page that has nowhere to put it is how
 copy gets lost.
 
+**`/build` does not exist.** Verified in a browser 2026-08-19: it renders the 404 component.
+An earlier version of this file said it returned 200 and was fixed; that came from a `curl`
+status code, which is meaningless on this site because the SPA answers every path with
+`index.html` and a 200. This prompt therefore builds the page before it fills it.
+
 ```
-Read the /build section of docs/03-content.md. It lists five things that move here from the
-homepage and the order they go in.
+Read the /build section of docs/03-content.md. The page is spec'd there in full.
+
+FIRST, BUILD THE PAGE. /build currently renders the 404 component. Load it in a browser and
+confirm that before you start; do not trust a curl status code on this site, because the SPA
+returns 200 for every path including ones that 404.
+
+Build /build using the same section components, tokens and card idiom as the rest of the
+site. It is not in the nav and not on the primary path. Everything on it is read-only: no
+checkboxes, no selectors, no running total, no estimate language.
+
+THEN MOVE THE FIVE THINGS IN. It lists them and the order they go in.
 
 This is a PURE MOVE. Not one word may change in transit. Before you start, save
 document.querySelector('main').textContent from the homepage with whitespace collapsed to
@@ -183,7 +200,15 @@ Move these five things onto /build, in the order docs/03-content.md gives:
 3. The entire "No surprises" block: heading, body paragraph, and all eight list items.
 4. The before/after module, "Same business. Different week.", with all four pairs. On mobile
    it stacks as paired rows, each mark with its match, never two columns of four.
-5. Confirm the inclusion list is already here.
+5. The add-ons link target and the add-on catalogue itself. The homepage keeps ONE link to
+   /build and loses the separate add-ons link, so this page has to carry both.
+
+The twenty-item inclusion list also belongs here, behind "See everything included". It was
+moved off the homepage in round two, so it may already exist in src/content/ even though the
+page that renders it does not. Find it before you rebuild it.
+
+{{TEXT_ALLOWANCE_POLICY}} renders literally on this page. It is reported missing from
+src/content/noSurprises.ts entirely; if that is right, add the token, not a sentence.
 
 Do NOT remove anything from the homepage yet. For this prompt the copy exists in both
 places. Prompt C removes it from the homepage.

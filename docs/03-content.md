@@ -423,8 +423,20 @@ language. The page publishes prices; it does not let visitors price themselves.
 `/calibration` 301s here. So does the deleted `/pricing`, unless the anchor `/#pricing`
 is the better landing, which it is: see the routing section of `02-architecture.md`.
 
-This route returned 404 at the 2026-08-18 baseline and now returns 200. That is fixed. It is
-the reason the round-three cuts have somewhere to go.
+## THIS PAGE DOES NOT EXIST YET. Build it before Prompt B moves anything into it.
+
+Verified in a browser on 2026-08-19: `/build` renders the 404 component. `/calibration`
+correctly redirects here, and lands on the 404.
+
+An earlier note in this file said the route "now returns 200. That is fixed." **That was
+wrong**, and wrong in a way worth recording, because it is the same mistake twice: `curl`
+returns 200 for every path on this site, including paths that render a 404, because the SPA
+fallback serves `index.html` at any URL. A status code proves nothing here. The only
+reliable check is loading the route in a browser and reading what renders.
+
+The consequence is that round three's five cuts have nowhere to go until this page is built.
+`/build` is now a prerequisite of the restructure rather than a destination that already
+exists. It is spec'd in full above; nothing about its contents changes.
 
 ---
 
