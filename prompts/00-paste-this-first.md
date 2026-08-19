@@ -56,7 +56,7 @@ STEP 2. Do not build yet. Reply with only the following, so I know the spec land
   c. The five things that move from the homepage to /build.
   d. The three routes that are deleted, and what each redirects to.
   e. The display typeface, the primary button color, and how eyebrows are rendered.
-  f. The five unresolved tokens that must still render literally.
+  f. The four unresolved tokens that must still render literally.
   g. Where the Signal interface screenshot renders, and what the hero image is.
   h. Anything in the current codebase that contradicts a through g. List it. Do not
      fix it yet.
@@ -96,10 +96,11 @@ SIX THINGS THAT WILL BREAK THIS IF YOU GET THEM WRONG:
   - Signal, The Six and Pricing are ONE section with three sub-blocks, one eyebrow pill
     at the top and none between them. How it works comes BEFORE it. The FAQ renders below
     the Final CTA, and nothing sits between Proof and the Final CTA.
-  - Five tokens render literally until I approve them: {{WEBSITE_CANCELLATION_TERMS}},
-    {{TEXT_ALLOWANCE_POLICY}}, {{HERO_H1}}, {{FINAL_CTA_HEADLINE}} and
-    {{STAKES_CLOSING_LINE}}. spec-check.js fails on unresolved tokens. That failure is
-    expected. Do not write your way out of it.
+  - Four tokens render literally until I approve them: {{WEBSITE_CANCELLATION_TERMS}},
+    {{TEXT_ALLOWANCE_POLICY}}, {{FINAL_CTA_HEADLINE}} and {{STAKES_CLOSING_LINE}}.
+    spec-check.js fails on unresolved tokens. That failure is expected. Do not write your
+    way out of it. {{HERO_H1}} was approved on 2026-08-19 and its sentence is in
+    prompts/07-restructure.md; it is the ONE new sentence in round three.
   - The design is Plus Jakarta Sans, pill eyebrows in sentence case, amber buttons with
     ink text, brand gradient for dark sections, and cards. It is NOT IBM Plex, NOT
     uppercase mono labels, NOT emerald buttons, NOT flat ink sections, and NOT hairline

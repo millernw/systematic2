@@ -15,10 +15,11 @@ rather than your recollection of one.
 2. **Re-paste `00-paste-this-first.md`** — but note it still describes ten sections in its
    step-2 questions. Answer "seven" when the tool parrots ten back at you, and point it at
    `docs/03-content.md`, which is authoritative for the homepage.
-3. **Decide the three copy gaps**, below. The tool will render `{{HERO_H1}}`,
-   `{{FINAL_CTA_HEADLINE}}` and `{{STAKES_CLOSING_LINE}}` literally until you approve
-   sentences for them, and `spec-check.js` will fail on unresolved tokens until you do. That
-   failure is correct. Do not let the tool write its way out of it.
+3. **Decide the two open copy gaps**, below. `{{HERO_H1}}` is settled and its sentence is in
+   this file. The tool will render `{{FINAL_CTA_HEADLINE}}` and `{{STAKES_CLOSING_LINE}}`
+   literally until you approve sentences for them, and `spec-check.js` will fail on
+   unresolved tokens until you do. That failure is correct. Do not let the tool write its
+   way out of it.
 
 ## Run the check after every prompt
 
@@ -30,15 +31,30 @@ Run it at 1280px wide and again at 375px. The mobile block only fires under 768p
 
 ---
 
-## The three copy gaps
+## The copy gaps
 
-Each is resolved by moving a sentence that already exists on the site. None needs new
-writing. All three need your yes.
+One is settled. The other two are resolved by moving a sentence that already exists on the
+site, and both still need your yes.
 
-**`{{HERO_H1}}` — the one-liner.** What you do, for whom, and the result, in one line. The
-raw material is the first clause of the current hero price line: *"Signal is a done-for-you
-marketing system for small business."* That is the what and the for-whom. It has no result
-clause. Either add one or approve it as-is.
+**`{{HERO_H1}}` — the one-liner. APPROVED 2026-08-19. The sentence is:**
+
+> ### Marketing for small business that never stops.
+
+The `--honey` hand-drawn underline goes on **never stops**, and on nothing else.
+
+Two things about it that a later session will undo if they are not written down:
+
+1. **It echoes the Stakes headline** two sections below, "You're the system. That's why your
+   marketing stops when you get busy." Hero states the resolution, Stakes names the problem,
+   same verb. Rewrite one and you have to check the other.
+2. **It says what the system does, not who operates it.** That work is done by the subhead's
+   last clause, "Then we run it." Software the owner operates is Dead End 1 in the very next
+   section, so if that clause is ever cut, the hero starts arguing for the thing the page
+   argues against. Keep it.
+
+It passes Rule 2: "never stops" describes how the system behaves, not a result the business
+will get. The site already speaks this way — "Runs continuously" is in the before/after
+module and "Follow Up Automatically" is system 06.
 
 **`{{FINAL_CTA_HEADLINE}}` — the statement of success.** Proposed: *"You stop being the part
 that breaks."* It is currently the last sentence of the hero subhead, where it competes with
@@ -50,7 +66,8 @@ experience and not a business result.
 system for your business, then it runs."* It is currently inside the third-option card, which
 this restructure deletes.
 
-If you approve all three as proposed, the entire restructure contains zero new sentences.
+One of the three is now settled and the other two are still yours. Approve them as proposed
+and the restructure adds exactly one new sentence to the site.
 
 ---
 
@@ -138,20 +155,36 @@ about the homepage, 03-content.md wins.
 Restructure the homepage from ten rendered sections to seven. The new order is Hero,
 Stakes, How it works, Signal, Proof, Final CTA, FAQ, plus Industries which renders null.
 
-This is almost entirely a MOVE, not a rewrite. Three places need a sentence that does not
-exist yet and they are tokens: render {{HERO_H1}}, {{FINAL_CTA_HEADLINE}} and
-{{STAKES_CLOSING_LINE}} literally. Do not write a sentence for any of them, do not assemble
-one from nearby copy, and do not remove the element so the token has nowhere to render.
-spec-check.js will fail on unresolved tokens and that failure is expected here.
+This is almost entirely a MOVE, not a rewrite. There is exactly ONE new sentence in this
+whole restructure and it is the hero headline, given verbatim in step 1 below. Add it to
+src/content/ like any other copy; do not hardcode it in a component.
+
+Two other places need a sentence that is not approved yet, and they are tokens: render
+{{FINAL_CTA_HEADLINE}} and {{STAKES_CLOSING_LINE}} literally. Do not write a sentence for
+either, do not assemble one from nearby copy, and do not remove the element so the token has
+nowhere to render. spec-check.js will fail on unresolved tokens and that failure is expected
+here.
 
 Work section by section, in this order, and show me the diff for each before moving on:
 
 1. HERO. Remove the credential strip; it goes to How it works. Remove the honey accent line
-   above the headline, and apply its hand-drawn underline treatment to a phrase inside the
-   new headline instead. Headline becomes {{HERO_H1}}. Subhead is the existing "We build the
-   system that answers for you..." sentence with its final sentence removed. Price line is
-   the existing line with its first clause removed. One amber button, one reassurance line.
-   Keep the photograph. Nothing else may sit in this section.
+   above the headline.
+
+   The headline becomes this exact sentence, which is new and approved:
+
+       Marketing for small business that never stops.
+
+   Put it in src/content/, not in the component. Apply the hand-drawn honey underline to the
+   words "never stops" and to nothing else.
+
+   Subhead is the existing "We build the system that answers for you..." sentence with only
+   its LAST sentence removed. "Then we run it." STAYS. "You stop being the part that breaks."
+   goes to the Final CTA. Do not cut both; the hero needs "Then we run it." to say that a
+   person runs this and not the owner.
+
+   Price line is the existing line with its first clause removed, so it opens at "$9,240".
+   One amber button, one reassurance line. Keep the photograph. Nothing else may sit in this
+   section.
 
 2. STAKES. One new section absorbing all of "You are the marketing" and all of "Two
    options". Its headline is the sentence moved down from the hero: "You're the system.

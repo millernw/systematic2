@@ -112,12 +112,13 @@ Nathan's approval before they are rendered.** Until approved, render the token l
 
 | Token | Resolved by | Status |
 |---|---|---|
-| `{{HERO_H1}}` | The clause "Signal is a done-for-you marketing system for small business", currently the first half of the hero price line, plus a result clause | Needs approval |
+| `{{HERO_H1}}` | A new sentence, the only one in round three | **Approved 2026-08-19.** The sentence is in `../prompts/07-restructure.md`, which is where it enters `src/content/`. It is not repeated here, because this file holds no sentences |
 | `{{FINAL_CTA_HEADLINE}}` | The sentence "You stop being the part that breaks.", currently the last sentence of the hero subhead | Needs approval |
 | `{{STAKES_CLOSING_LINE}}` | The sentence "Someone builds the system for your business, then it runs.", currently inside the deleted third-option card | Needs approval |
 
-Do not write a plausible sentence in any of these three places. Do not assemble one from
-nearby copy. Render the token.
+Do not write a plausible sentence in either remaining place. Do not assemble one from nearby
+copy. Render the token. Once the approved hero headline is in `src/content/`, that file is
+its source of truth and the prompt is just the delivery mechanism.
 
 ## 1. Hero
 
@@ -126,12 +127,24 @@ Brand gradient. Text left, image right. ~760px.
 One job: say what this is, for whom, and what changes, then offer one button. Nothing else
 may sit in this section. Every element below is the complete list.
 
-- Headline, `{{HERO_H1}}`. The hand-drawn `--honey` underline treatment applies to a phrase
-  **inside** the headline. The separate honey accent line above the headline is deleted; its
-  sentence moved to Stakes.
-- Subhead, the existing "We build the system that answers for you…" sentence **with its final
-  sentence removed**. "You stop being the part that breaks." leaves the hero and becomes the
-  Final CTA headline.
+- Headline, `{{HERO_H1}}`, approved 2026-08-19 and carried in
+  `../prompts/07-restructure.md`. The hand-drawn `--honey` underline treatment applies to the
+  final two words. The separate honey accent line above the headline is deleted; its sentence
+  moved to Stakes.
+
+  **The headline deliberately echoes the Stakes headline two sections down**, which is "You're
+  the system. That's why your marketing stops when you get busy." Hero states the resolution,
+  Stakes names the problem, same verb. If either sentence is ever rewritten, check the other.
+  This pairing is not decorative and it is the reason the hero can be this short.
+
+- Subhead, the existing "We build the system that answers for you…" sentence, **keeping
+  "Then we run it."** That sentence is doing load-bearing work now: the approved headline says
+  what the system does and not who operates it, so the subhead is the only place the hero says
+  a person runs it. Software the owner operates is Dead End 1 in the next section. Do not cut
+  it.
+
+  Its *final* sentence, "You stop being the part that breaks.", still leaves the hero and
+  becomes the Final CTA headline.
 - Price line, one line, both figures. The existing line **with its first clause removed**,
   because that clause is now the headline.
 - One amber button. One reassurance line beneath it.

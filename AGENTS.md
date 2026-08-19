@@ -69,9 +69,10 @@ judgment.
   leave no gap. `/industries/[slug]` 404s for every seed.
 - `{{WEBSITE_CANCELLATION_TERMS}}` and `{{TEXT_ALLOWANCE_POLICY}}` are unresolved
   decisions. Render both tokens literally. Do not write a plausible sentence in either
-  place. Round three adds three more, all awaiting Nathan's approval: `{{HERO_H1}}`,
-  `{{FINAL_CTA_HEADLINE}}` and `{{STAKES_CLOSING_LINE}}`. Same rule. Do not assemble one out
-  of nearby copy either.
+  place. Round three added three more. `{{HERO_H1}}` is approved and its sentence is in
+  `prompts/07-restructure.md`. `{{FINAL_CTA_HEADLINE}}` and `{{STAKES_CLOSING_LINE}}` are
+  still open: render them literally, same rule, and do not assemble one out of nearby copy
+  either.
 - Copy lives in `src/content/` only. A sentence inside a component is a second source of
   truth and will drift. `checks/copy-source-check.sh` fails on it.
 - Never render internal hours, cost, margin, or effective hourly rate. They are not in this
@@ -104,3 +105,10 @@ the following, you are rebuilding a site that no longer exists:
 
 Instructions for the human operator. Not a task list. Do not execute anything in it unless
 asked to.
+
+- **The hero headline and the Stakes headline are a matched pair.** The hero says marketing
+  that never stops; Stakes, two sections down, says marketing that stops when you get busy.
+  Resolution then problem, same verb. Rewrite one and you must check the other.
+- **The hero subhead keeps "Then we run it."** The headline says what the system does and not
+  who operates it, so that clause is the only place the hero says a person runs this. Software
+  the owner operates is Dead End 1 in the very next section.

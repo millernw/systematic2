@@ -135,7 +135,24 @@ catches the reader who scrolls past.
 
 ## Why nothing here is a copy rewrite
 
-Every round-three change is a move, a deletion, or a treatment change. The three places that
-needed a sentence that did not exist are tokens awaiting approval rather than invented copy:
-`{{HERO_H1}}`, `{{FINAL_CTA_HEADLINE}}` and `{{STAKES_CLOSING_LINE}}`. Each has a proposed
-source sentence already on the site. Rule 1 held.
+Every round-three change is a move, a deletion, or a treatment change, with exactly one
+exception. `{{FINAL_CTA_HEADLINE}}` and `{{STAKES_CLOSING_LINE}}` are tokens awaiting
+approval rather than invented copy, and each has a proposed source sentence already on the
+site.
+
+`{{HERO_H1}}` is the exception and the only new sentence in the round: **"Marketing for small
+business that never stops."** Nathan approved it on 2026-08-19. It was written rather than
+moved because the hero had nothing to move: the old headline was a problem statement, which
+is why it went to Stakes, and the only what-we-do sentence on the page carried no result.
+
+Two options were on the table. The other was "Small business marketing, automated and run for
+you", which does its own anti-software work in the phrase "run for you". This one is shorter
+and it pays off structurally, because it echoes the Stakes headline two sections down: hero
+says marketing that never stops, Stakes says marketing that stops when you get busy. Same
+verb, resolution then problem.
+
+The cost of choosing it is that the hero no longer says who operates the system, so the
+subhead's "Then we run it." became load-bearing and can no longer be cut. Software the owner
+operates is Dead End 1 in the section immediately after. That dependency is recorded in
+`AGENTS.md` and in the Hero spec, because it is exactly the kind of thing a later session
+tidies away.
