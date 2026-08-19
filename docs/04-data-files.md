@@ -374,7 +374,7 @@ export const META = {
   },
   "/diagnostic": {
     title: "Free Six-Point Scorecard · Systematic",
-    description: "Score your business on the six systems using what is already public about you, then find out which one is costing you the most. About a minute, no account needed.",
+    description: "Four questions and a look at what is already public. Score your business on the six systems and find out which one is costing you the most. About a minute, no account needed.",
   },
   "/build": {
     title: "Every line of a build, published · Systematic",
