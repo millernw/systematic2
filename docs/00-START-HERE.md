@@ -12,6 +12,7 @@ Read it fully, then read the file the current task points to.
 | `02-architecture.md` | Stack, file structure, config, routing, components | Before any structural work |
 | `03-content.md` | Every word on the site | Before writing any copy |
 | `04-data-files.md` | Literal contents of the typed data files | When creating or editing data |
+| `06-scorecard-flow.md` | The Scorecard capture flow, the only lead capture on the site | Before any work under `/diagnostic` |
 | `../prompts/05-build-prompts.md` | The prompt sequence and correction prompts | Human uses this, not you |
 
 ## What this company is
