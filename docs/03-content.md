@@ -484,8 +484,10 @@ Business and New Leads are retired as pillar names and appear nowhere on this si
 
 ## The two things are named differently
 
-The Scorecard is instant, automated, and scored from public data. It is the front door and
-every button on the site points at it. The Audit takes about an hour with a person, is step
+The Scorecard takes about a minute, is the front door, and every button on the site points
+at it. It is a hybrid of four short questions and what is publicly visible, because only two
+of the six systems can honestly be scored from the outside. The full flow is specified in
+`06-scorecard-flow.md`, which governs anything under `/diagnostic`. The Audit takes about an hour with a person, is step
 one of How it works, and is what the Scorecard offers next. Never use one name for the
 other.
 
@@ -495,9 +497,9 @@ Eyebrow pill: Free, no account needed
 
 Headline: Find out which of the six you are actually missing.
 
-Body: We score your business on the six systems using what is already public about you,
-then tell you which one is costing you the most. You keep the findings whether or not you
-hire us.
+Body: Four short questions, plus a look at what is already public about you. We score your
+business on the six systems and tell you which one is costing you the most. You keep the
+findings whether or not you hire us.
 
 Button: Run my free Six-Point Scorecard
 Line beneath: About a minute. No password, no account, and no sales call to get the result.
